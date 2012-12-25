@@ -2,7 +2,7 @@
 sauceclient
 ===========
 
-Python client library for Sauce API.
+Python client library for Sauce Labs API.
 
 Work in Progress...
 
