@@ -7,6 +7,9 @@ import httplib
 import json
 
 
+__version__ = '0.1.0dev'
+
+
 class SauceJobs(object):
 
     def __init__(self, sauce_username, sauce_access_key):
