@@ -23,7 +23,5 @@ Related Links
 =============
 
 * Sauce Labs | https://saucelabs.com
-
 * Sauce Labs REST API Documentation | https://saucelabs.com/docs/rest
-
 * Python bindings for Selenium WebDriver | http://pypi.python.org/pypi/selenium
