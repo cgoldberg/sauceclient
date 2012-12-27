@@ -8,3 +8,4 @@ to generate the docs...
 from top sauceclient directory, run:
   $ sphinx-build -b html doc html_docs
 generated results end up in './html_docs/'
+
