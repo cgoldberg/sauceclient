@@ -1,9 +1,10 @@
-to generate sphinx docs...
+Generating the Docs
+===================
 
-from main sauceclient directory, run:
+* requires python-sphinx (http://sphinx-doc.org)
 
-$ sphinx-build -b html doc html_docs
+to generate the docs...
 
+from top sauceclient directory, run:
+  $ sphinx-build -b html doc html_docs
 generated results end up in './html_docs/'
-
-* requires python-sphinx

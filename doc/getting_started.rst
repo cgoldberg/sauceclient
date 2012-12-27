@@ -2,14 +2,13 @@ Getting started with `sauceclient`
 ==================================
 
 * Requirements:
+
  * Python 2.7
  * Selenium 2.x (`pip install selenium`)
 
-Let's start with a very simple Selenium WebDriver example.
+Let's start with a very simple Selenium WebDriver example...
 
-consider the following Python script:
-
-.. code:: Python
+consider the following Python code::
 
     #!/usr/bin/env python
 
@@ -21,9 +20,7 @@ consider the following Python script:
 
 This code used `webdriver.Firefox()`, to invoke the local FireFox driver.
 
-Instead of running locally via `webdriver.Firefox()`, we can use `webdriver.Remote()`, and have it execute from a remote Machine running Selenium Server.  In this case, the Sauce Labs cloud.
-
-.. code:: Python
+Instead of running locally via `webdriver.Firefox()`, we can use `webdriver.Remote()`, and have it execute from a remote Machine running Selenium Server.  In this case, the Sauce Labs cloud::
 
     #!/usr/bin/env python
     
@@ -46,9 +43,7 @@ Instead of running locally via `webdriver.Firefox()`, we can use `webdriver.Remo
 Running a Test Using Local WebDriver
 ------------------------------------
 
-The following Python script executes a simple test against the Sauce Labs sandbox server.  It drives the local FireFox browser.
-
-.. code:: Python
+The following Python script executes a simple test against the Sauce Labs sandbox server.  It drives the local FireFox browser::
 
     #!/usr/bin/env python
 
@@ -79,9 +74,7 @@ The following Python script executes a simple test against the Sauce Labs sandbo
 Running a Test From Sauce Labs
 ------------------------------
 
-Similar Python script as above, but now executing from Sauce Labs cloud.  Notice the use of `webdriver.Remote()` as a replacement driver.
-
-.. code:: Python
+Similar Python script as above, but now executing from Sauce Labs cloud.  Notice the use of `webdriver.Remote()` as a replacement driver::
 
     #!/usr/bin/env python
 
