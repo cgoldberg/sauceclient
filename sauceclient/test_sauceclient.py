@@ -30,8 +30,15 @@ class TestAPIRequest(unittest.TestCase):
     def setUp(self):
         self.headers = sauceclient._make_headers(
             SAUCE_USERNAME,
-            SAUCE_ACCESS_KEY
+            SAUCE_ACCESS_KEY,
         )
+
+    def test_headers(self):
+        self.assertIsInstance(self.headers, dict)
+        self.assertIn('Authorization', self.headers)
+        self.assertIn('Content-Type', self.headers)
+        self.assertIn('Basic', self.headers['Authorization'])
+        self.assertEqual('application/json', self.headers['Content-Type'])
         
     def test_request(self):
         url = '/rest/v1/users/%s' % SAUCE_USERNAME
@@ -86,9 +93,20 @@ class TestProvisioning(unittest.TestCase):
         self.p = sauceclient.Provisioning()
 
     def test_get_account_details(self):
-        pass
-      
-        
+        account_details = self.p.get_account_details()
+        self.assertIsInstance(account_details, dict)
+        self.assertIn('id', account_details)
+        self.assertIn('minutes', account_details)
+        self.assertIn('access_key', account_details)
+        self.assertIn('subscribed', account_details)
+        self.assertEqual(account_details['id'], SAUCE_USERNAME)
+
+    def test_get_account_limits(self):
+        account_limits = self.p.get_account_limits()
+        self.assertIsInstance(account_limits, dict)
+        self.assertIn('concurrency', account_limits)
+        #self.assertEqual(account_details['id'], SAUCE_USERNAME)
+
 
 if __name__ == '__main__':
     if not all((SAUCE_USERNAME, SAUCE_ACCESS_KEY, TEST_JOB_ID)):
