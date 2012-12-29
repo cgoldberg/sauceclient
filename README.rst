@@ -23,7 +23,6 @@ About sauceclient
  * Provisioning
  * Usage
  * Jobs
- * Tunnels
  * Information
 
 Sauce Labs REST API documentation:
