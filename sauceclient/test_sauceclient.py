@@ -13,7 +13,7 @@
 #
 
 
-from sauceclient import SauceJobs
+import sauceclient
 
 import json
 import unittest
@@ -25,19 +25,25 @@ SAUCE_ACCESS_KEY = ''
 TEST_JOB_ID = ''  # any valid id
 
 
-class TestSauceJobs(unittest.TestCase):
-
+class TestAPIRequest(unittest.TestCase):
+    
     def setUp(self):
-        self.jobs = SauceJobs(SAUCE_USERNAME, SAUCE_ACCESS_KEY)
-        if '' in (SAUCE_USERNAME, SAUCE_ACCESS_KEY, TEST_JOB_ID):
-            raise SystemExit('Change your credentials (username/access-key)')
-
+        self.base64string = sauceclient._encode_credentials(
+            SAUCE_USERNAME, SAUCE_ACCESS_KEY
+        )
+        
     def test_request(self):
-        url = '/rest/v1/%s/jobs/%s' % (self.jobs.sauce_username, TEST_JOB_ID)
-        json_data = self.jobs._request('GET', url)
+        url = '/rest/v1/users/%s' % SAUCE_USERNAME
+        json_data = sauceclient._sauce_request('GET', url, self.base64string)
         self.assertIsInstance(json_data, str)
         attributes = json.loads(json_data)
         self.assertIsInstance(attributes, dict)
+
+
+class TestJobs(unittest.TestCase):
+
+    def setUp(self):
+        self.jobs = sauceclient.Jobs(SAUCE_USERNAME, SAUCE_ACCESS_KEY)
 
     def test_list_job_ids(self):
         job_ids = self.jobs.list_job_ids()
@@ -67,5 +73,17 @@ class TestSauceJobs(unittest.TestCase):
         self.assertEqual(job_attributes['id'], TEST_JOB_ID)
 
 
+class TestProvisioning(unittest.TestCase):
+
+    def setUp(self):
+        self.p = sauceclient.Provisioning(SAUCE_USERNAME, SAUCE_ACCESS_KEY)
+
+    def test_get_account_details(self):
+        pass
+      
+        
+
 if __name__ == '__main__':
+    if '' in (SAUCE_USERNAME, SAUCE_ACCESS_KEY, TEST_JOB_ID):
+        raise SystemExit('Change your credentials (username/access-key)')
     unittest.main(verbosity=2)

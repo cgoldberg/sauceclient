@@ -21,32 +21,38 @@ import json
 __version__ = '0.1.0dev'
 
 
-class SauceJobs(object):
+def _encode_credentials(sauce_username, sauce_access_key):
+    return base64.encodestring(
+        '%s:%s' % (sauce_username, sauce_access_key)
+    )[:-1]
+        
+def _sauce_request(method, url, base64string, body=None):
+    headers = {'Authorization': 'Basic %s' % base64string}
+    connection = httplib.HTTPSConnection('saucelabs.com')
+    connection.request(method, url, body, headers=headers)
+    response = connection.getresponse()
+    json_data = response.read()
+    connection.close()
+    if response.status != 200:
+        raise Exception('%s: %s.\nSauce Status NOT OK' %
+                        (response.status, response.reason))
+    return json_data
+    
+
+class Jobs(object):
 
     def __init__(self, sauce_username, sauce_access_key):
         self.sauce_username = sauce_username
         self.sauce_access_key = sauce_access_key
-        self.base64string = base64.encodestring(
-            '%s:%s' % (sauce_username, sauce_access_key)
-        )[:-1]
-
-    def _request(self, method, url, body=None):
-        headers = {'Authorization': 'Basic %s' % self.base64string}
-        connection = httplib.HTTPSConnection('saucelabs.com')
-        connection.request(method, url, body, headers=headers)
-        response = connection.getresponse()
-        json_data = response.read()
-        connection.close()
-        if response.status != 200:
-            raise Exception('%s: %s.\nSauce Status NOT OK' %
-                            (response.status, response.reason))
-        return json_data
-
+        self.base64string = _encode_credentials(
+            sauce_username, sauce_access_key
+        )
+    
     def list_job_ids(self):
         """list all jobs id's belonging to the user."""
         method = 'GET'
         url = '/rest/v1/%s/jobs' % self.sauce_username
-        json_data = self._request(method, url)
+        json_data = _sauce_request(method, url, self.base64string)
         jobs = json.loads(json_data)
         job_ids = [attr['id'] for attr in jobs]
         return job_ids
@@ -56,7 +62,7 @@ class SauceJobs(object):
         method = 'GET'
         url = '/rest/v1/%s/jobs' % self.sauce_username
         url += '?full=true'
-        json_data = self._request(method, url)
+        json_data = _sauce_request(method, url, self.base64string)
         jobs = json.loads(json_data)
         return jobs
 
@@ -64,7 +70,7 @@ class SauceJobs(object):
         """get information for the specified job."""
         method = 'GET'
         url = '/rest/v1/%s/jobs/%s' % (self.sauce_username, job_id)
-        json_data = self._request(method, url)
+        json_data = _sauce_request(method, url, self.base64string)
         attributes = json.loads(json_data)
         return attributes
 
@@ -87,6 +93,25 @@ class SauceJobs(object):
         body = json.dumps(content)
         method = 'PUT'
         url = '/rest/v1/%s/jobs/%s' % (self.sauce_username, job_id)
-        json_data = self._request(method, url, body=body)
+        json_data = _sauce_request(method, url, self.base64string, body=body)
         attributes = json.loads(json_data)
         return attributes
+
+
+class Provisioning(object):
+    
+    def __init__(self, sauce_username, sauce_access_key):
+        self.sauce_username = sauce_username
+        self.sauce_access_key = sauce_access_key
+        self.base64string = _encode_credentials(
+            sauce_username, sauce_access_key
+        )
+
+    def get_account_details(self):
+        """access account details."""
+        method = 'GET'
+        url = '/rest/v1/users/%s' % self.sauce_username
+        json_data = _sauce_request(method, url, self.base64string)
+        attributes = json.loads(json_data)
+        return attributes
+        
