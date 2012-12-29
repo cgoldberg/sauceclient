@@ -11,6 +11,10 @@
 #
 #       http://www.apache.org/licenses/LICENSE-2.0
 #
+#   ----------------
+#   
+#   Sauce Labs REST API documentation:
+#     https://saucelabs.com/docs/rest
 
 
 import base64

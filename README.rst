@@ -8,7 +8,7 @@ sauceclient
 
 Work in Progress...
 
- - @cgoldberg (12/28/2012)
+ - @cgoldberg (12/29/2012)
  
 ----
 
@@ -25,7 +25,12 @@ About sauceclient
  * Jobs
  * Tunnels
  * Information
- 
+
+Sauce Labs REST API documentation:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* https://saucelabs.com/docs/rest
+
 ----------------------------------
 Running the sauceclient Unit Tests
 ----------------------------------
