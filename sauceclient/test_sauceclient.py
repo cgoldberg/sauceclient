@@ -22,19 +22,20 @@ import unittest
 # set these to run tests
 SAUCE_USERNAME = ''
 SAUCE_ACCESS_KEY = ''
-TEST_JOB_ID = ''  # any valid id
+TEST_JOB_ID = ''  # any valid job
 
 
 class TestAPIRequest(unittest.TestCase):
     
     def setUp(self):
-        self.base64string = sauceclient._encode_credentials(
-            SAUCE_USERNAME, SAUCE_ACCESS_KEY
+        self.headers = sauceclient._make_headers(
+            SAUCE_USERNAME,
+            SAUCE_ACCESS_KEY
         )
         
     def test_request(self):
         url = '/rest/v1/users/%s' % SAUCE_USERNAME
-        json_data = sauceclient._sauce_request('GET', url, self.base64string)
+        json_data = sauceclient._sauce_request('GET', url, self.headers)
         self.assertIsInstance(json_data, str)
         attributes = json.loads(json_data)
         self.assertIsInstance(attributes, dict)
@@ -43,7 +44,8 @@ class TestAPIRequest(unittest.TestCase):
 class TestJobs(unittest.TestCase):
 
     def setUp(self):
-        self.jobs = sauceclient.Jobs(SAUCE_USERNAME, SAUCE_ACCESS_KEY)
+        sauceclient.set_credentials(SAUCE_USERNAME, SAUCE_ACCESS_KEY)
+        self.jobs = sauceclient.Jobs()
 
     def test_list_job_ids(self):
         job_ids = self.jobs.list_job_ids()
@@ -72,11 +74,16 @@ class TestJobs(unittest.TestCase):
         self.assertIn('id', job_attributes)
         self.assertEqual(job_attributes['id'], TEST_JOB_ID)
 
+    def tearDown(self):
+        SAUCE_USERNAME = None
+        SAUCE_ACCESS_KEY = None
+
 
 class TestProvisioning(unittest.TestCase):
 
     def setUp(self):
-        self.p = sauceclient.Provisioning(SAUCE_USERNAME, SAUCE_ACCESS_KEY)
+        sauceclient.set_credentials(SAUCE_USERNAME, SAUCE_ACCESS_KEY)
+        self.p = sauceclient.Provisioning()
 
     def test_get_account_details(self):
         pass
@@ -84,6 +91,6 @@ class TestProvisioning(unittest.TestCase):
         
 
 if __name__ == '__main__':
-    if '' in (SAUCE_USERNAME, SAUCE_ACCESS_KEY, TEST_JOB_ID):
+    if not all((SAUCE_USERNAME, SAUCE_ACCESS_KEY, TEST_JOB_ID)):
         raise SystemExit('Change your credentials (username/access-key)')
     unittest.main(verbosity=2)

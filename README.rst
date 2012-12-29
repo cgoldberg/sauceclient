@@ -29,7 +29,7 @@ About sauceclient
 Sauce Labs REST API documentation:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* https://saucelabs.com/docs/rest
+* http://saucelabs.com/docs/rest
 
 ----------------------------------
 Running the sauceclient Unit Tests
