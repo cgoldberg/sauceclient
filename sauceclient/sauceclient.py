@@ -25,55 +25,46 @@ import json
 __version__ = '0.1.0dev'
 
 
-SAUCE_USERNAME = None
-SAUCE_ACCESS_KEY = None
 
+class SauceClient(object):
 
-def set_credentials(sauce_username, sauce_access_key):
-    """Set credentials for Sauce Labs authorization."""
-    global SAUCE_USERNAME
-    global SAUCE_ACCESS_KEY
-    SAUCE_USERNAME = sauce_username
-    SAUCE_ACCESS_KEY = sauce_access_key
-
-def _make_headers(sauce_username, sauce_access_key):
-    base64string = base64.encodestring(
-        '%s:%s' % (sauce_username, sauce_access_key)
-    )[:-1]
-    headers = {
-        'Authorization': 'Basic %s' % base64string,
-        'Content-Type': 'application/json',
-    }
-    return headers
-    
-def _sauce_request(method, url, headers, body=None):
-    connection = httplib.HTTPSConnection('saucelabs.com')
-    connection.request(method, url, body, headers=headers)
-    response = connection.getresponse()
-    json_data = response.read()
-    connection.close()
-    if response.status != 200:
-        raise Exception('%s: %s.\nSauce Status NOT OK' %
-                        (response.status, response.reason))
-    return json_data
+    def __init__(self, sauce_username, sauce_access_key):
+        self.sauce_username = sauce_username
+        self.sauce_access_key = sauce_access_key
+        self.headers = self.make_headers()
+        
+    def make_headers(self):
+        base64string = base64.encodestring(
+            '%s:%s' % (self.sauce_username, self.sauce_access_key)
+        )[:-1]
+        headers = {
+            'Authorization': 'Basic %s' % base64string,
+            'Content-Type': 'application/json',
+        }
+        return headers
+        
+    def request(self, method, url, body=None):
+        connection = httplib.HTTPSConnection('saucelabs.com')
+        connection.request(method, url, body, headers=self.headers)
+        response = connection.getresponse()
+        json_data = response.read()
+        connection.close()
+        if response.status != 200:
+            raise Exception('%s: %s.\nSauce Status NOT OK' %
+                            (response.status, response.reason))
+        return json_data
     
 
 class Jobs(object):
 
-    def __init__(self):
-        self.sauce_username = SAUCE_USERNAME
-        self.sauce_access_key = SAUCE_ACCESS_KEY
-        if not all((self.sauce_username, self.sauce_access_key)):
-            raise SystemExit('Error: please set credentials')
-        self.headers = _make_headers(
-            self.sauce_username, self.sauce_access_key
-        )
+    def __init__(self, sauce_username, sauce_access_key):
+        self.sc = SauceClient(sauce_username, sauce_access_key)
     
     def list_job_ids(self):
         """List all jobs id's belonging to the user."""
         method = 'GET'
-        url = '/rest/v1/%s/jobs' % self.sauce_username
-        json_data = _sauce_request(method, url, self.headers)
+        url = '/rest/v1/%s/jobs' % self.sc.sauce_username
+        json_data = self.sc.request(method, url)
         jobs = json.loads(json_data)
         job_ids = [attr['id'] for attr in jobs]
         return job_ids
@@ -81,17 +72,16 @@ class Jobs(object):
     def list_jobs(self):
         """List all jobs belonging to the user."""
         method = 'GET'
-        url = '/rest/v1/%s/jobs' % self.sauce_username
-        url += '?full=true'
-        json_data = _sauce_request(method, url, self.headers)
+        url = '/rest/v1/%s/jobs?full=true' % self.sc.sauce_username
+        json_data = self.sc.request(method, url)
         jobs = json.loads(json_data)
         return jobs
 
     def get_job_attributes(self, job_id):
         """Get information for the specified job."""
         method = 'GET'
-        url = '/rest/v1/%s/jobs/%s' % (self.sauce_username, job_id)
-        json_data = _sauce_request(method, url, self.headers)
+        url = '/rest/v1/%s/jobs/%s' % (self.sc.sauce_username, job_id)
+        json_data = self.sc.request(method, url)
         attributes = json.loads(json_data)
         return attributes
 
@@ -113,35 +103,30 @@ class Jobs(object):
             content['tags'] = tags
         body = json.dumps(content)
         method = 'PUT'
-        url = '/rest/v1/%s/jobs/%s' % (self.sauce_username, job_id)
-        json_data = _sauce_request(method, url, self.headers, body=body)
+        url = '/rest/v1/%s/jobs/%s' % (self.sc.sauce_username, job_id)
+        json_data = self.sc.request(method, url, body=body)
         attributes = json.loads(json_data)
         return attributes
 
 
 class Provisioning(object):
     
-    def __init__(self):
-        self.sauce_username = SAUCE_USERNAME
-        self.sauce_access_key = SAUCE_ACCESS_KEY
-        if not all((self.sauce_username, self.sauce_access_key)):
-            raise SystemExit('Error: please set credentials')
-        self.headers = _make_headers(
-            self.sauce_username, self.sauce_access_key
-        )
+    def __init__(self, sauce_username, sauce_access_key):
+        self.sc = SauceClient(sauce_username, sauce_access_key)
             
     def get_account_details(self):
         """Access account details."""
         method = 'GET'
-        url = '/rest/v1/users/%s' % self.sauce_username
-        json_data = _sauce_request(method, url, self.headers)
+        url = '/rest/v1/users/%s' % self.sc.sauce_username
+        json_data = self.sc.request(method, url)
         attributes = json.loads(json_data)
         return attributes
 
     def get_account_limits(self):
         """Access account limits."""
         method = 'GET'
-        url = '/rest/v1/%s/limits' % self.sauce_username
-        json_data = _sauce_request(method, url, self.headers)
+        url = '/rest/v1/%s/limits' % self.sc.sauce_username
+        json_data = self.sc.request(method, url)
         attributes = json.loads(json_data)
         return attributes
+

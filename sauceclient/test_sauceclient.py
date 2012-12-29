@@ -25,24 +25,24 @@ SAUCE_ACCESS_KEY = ''
 TEST_JOB_ID = ''  # any valid job
 
 
-class TestAPIRequest(unittest.TestCase):
+class TestSauceClient(unittest.TestCase):
     
     def setUp(self):
-        self.headers = sauceclient._make_headers(
+        self.sc = sauceclient.SauceClient(
             SAUCE_USERNAME,
             SAUCE_ACCESS_KEY,
         )
-
     def test_headers(self):
-        self.assertIsInstance(self.headers, dict)
-        self.assertIn('Authorization', self.headers)
-        self.assertIn('Content-Type', self.headers)
-        self.assertIn('Basic', self.headers['Authorization'])
-        self.assertEqual('application/json', self.headers['Content-Type'])
+        headers = self.sc.headers
+        self.assertIsInstance(headers, dict)
+        self.assertIn('Authorization', headers)
+        self.assertIn('Content-Type', headers)
+        self.assertIn('Basic', headers['Authorization'])
+        self.assertEqual('application/json', headers['Content-Type'])
         
-    def test_request(self):
-        url = '/rest/v1/users/%s' % SAUCE_USERNAME
-        json_data = sauceclient._sauce_request('GET', url, self.headers)
+    def test_request_get(self):
+        url = '/rest/v1/users/%s' % self.sc.sauce_username
+        json_data = self.sc.request('GET', url)
         self.assertIsInstance(json_data, str)
         attributes = json.loads(json_data)
         self.assertIsInstance(attributes, dict)
@@ -51,8 +51,7 @@ class TestAPIRequest(unittest.TestCase):
 class TestJobs(unittest.TestCase):
 
     def setUp(self):
-        sauceclient.set_credentials(SAUCE_USERNAME, SAUCE_ACCESS_KEY)
-        self.jobs = sauceclient.Jobs()
+        self.jobs = sauceclient.Jobs(SAUCE_USERNAME, SAUCE_ACCESS_KEY)
 
     def test_list_job_ids(self):
         job_ids = self.jobs.list_job_ids()
@@ -89,8 +88,7 @@ class TestJobs(unittest.TestCase):
 class TestProvisioning(unittest.TestCase):
 
     def setUp(self):
-        sauceclient.set_credentials(SAUCE_USERNAME, SAUCE_ACCESS_KEY)
-        self.p = sauceclient.Provisioning()
+        self.p = sauceclient.Provisioning(SAUCE_USERNAME, SAUCE_ACCESS_KEY)
 
     def test_get_account_details(self):
         account_details = self.p.get_account_details()
