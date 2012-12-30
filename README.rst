@@ -34,7 +34,8 @@ Sauce Labs REST API documentation:
 a simple example using sauceclient
 ----------------------------------
 
-::
+* using sauceclient::
+
     import sauceclient
 
     sc = sauceclient.SauceClient(
