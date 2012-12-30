@@ -51,7 +51,11 @@ class TestSauceClient(unittest.TestCase):
 class TestJobs(unittest.TestCase):
 
     def setUp(self):
-        self.jobs = sauceclient.Jobs(SAUCE_USERNAME, SAUCE_ACCESS_KEY)
+        self.sc = sauceclient.SauceClient(
+            SAUCE_USERNAME,
+            SAUCE_ACCESS_KEY,
+        )
+        self.jobs = sauceclient.Jobs(self.sc)
 
     def test_list_job_ids(self):
         job_ids = self.jobs.list_job_ids()
@@ -88,7 +92,11 @@ class TestJobs(unittest.TestCase):
 class TestProvisioning(unittest.TestCase):
 
     def setUp(self):
-        self.p = sauceclient.Provisioning(SAUCE_USERNAME, SAUCE_ACCESS_KEY)
+        self.sc = sauceclient.SauceClient(
+            SAUCE_USERNAME,
+            SAUCE_ACCESS_KEY,
+        )
+        self.p = sauceclient.Provisioning(self.sc)
 
     def test_get_account_details(self):
         account_details = self.p.get_account_details()

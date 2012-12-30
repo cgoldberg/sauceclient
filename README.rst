@@ -13,7 +13,7 @@ Work in Progress...
 ----
 
 -----------------
-About sauceclient
+about sauceclient
 -----------------
 
 `sauceclient` is *not* for running your tests on Sauce Labs service.  That is done via Selenium WebDriver.
@@ -31,7 +31,23 @@ Sauce Labs REST API documentation:
 * http://saucelabs.com/docs/rest
 
 ----------------------------------
-Running the sauceclient Unit Tests
+a simple example using sauceclient
+----------------------------------
+
+::
+    import sauceclient
+
+    sc = sauceclient.SauceClient(
+        'sauce-username',
+        'sauce-access-key',
+    )
+            
+    job_ids = sc.jobs.list_job_ids()
+    a_job = job_ids[0]
+    attributes = sc.jobs.get_job_attributes(a_job)
+
+----------------------------------
+running the sauceclient unit tests
 ----------------------------------
 
 * clone the repo::

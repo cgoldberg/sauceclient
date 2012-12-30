@@ -32,6 +32,8 @@ class SauceClient(object):
         self.sauce_username = sauce_username
         self.sauce_access_key = sauce_access_key
         self.headers = self.make_headers()
+        self.jobs = Jobs(self)
+        self.provisioning = Provisioning(self)
         
     def make_headers(self):
         base64string = base64.encodestring(
@@ -57,14 +59,14 @@ class SauceClient(object):
 
 class Jobs(object):
 
-    def __init__(self, sauce_username, sauce_access_key):
-        self.sc = SauceClient(sauce_username, sauce_access_key)
+    def __init__(self, client):
+        self.client = client
     
     def list_job_ids(self):
         """List all jobs id's belonging to the user."""
         method = 'GET'
-        url = '/rest/v1/%s/jobs' % self.sc.sauce_username
-        json_data = self.sc.request(method, url)
+        url = '/rest/v1/%s/jobs' % self.client.sauce_username
+        json_data = self.client.request(method, url)
         jobs = json.loads(json_data)
         job_ids = [attr['id'] for attr in jobs]
         return job_ids
@@ -72,16 +74,16 @@ class Jobs(object):
     def list_jobs(self):
         """List all jobs belonging to the user."""
         method = 'GET'
-        url = '/rest/v1/%s/jobs?full=true' % self.sc.sauce_username
-        json_data = self.sc.request(method, url)
+        url = '/rest/v1/%s/jobs?full=true' % self.client.sauce_username
+        json_data = self.client.request(method, url)
         jobs = json.loads(json_data)
         return jobs
 
     def get_job_attributes(self, job_id):
         """Get information for the specified job."""
         method = 'GET'
-        url = '/rest/v1/%s/jobs/%s' % (self.sc.sauce_username, job_id)
-        json_data = self.sc.request(method, url)
+        url = '/rest/v1/%s/jobs/%s' % (self.client.sauce_username, job_id)
+        json_data = self.client.request(method, url)
         attributes = json.loads(json_data)
         return attributes
 
@@ -103,30 +105,30 @@ class Jobs(object):
             content['tags'] = tags
         body = json.dumps(content)
         method = 'PUT'
-        url = '/rest/v1/%s/jobs/%s' % (self.sc.sauce_username, job_id)
-        json_data = self.sc.request(method, url, body=body)
+        url = '/rest/v1/%s/jobs/%s' % (self.client.sauce_username, job_id)
+        json_data = self.client.request(method, url, body=body)
         attributes = json.loads(json_data)
         return attributes
 
 
 class Provisioning(object):
     
-    def __init__(self, sauce_username, sauce_access_key):
-        self.sc = SauceClient(sauce_username, sauce_access_key)
+    def __init__(self, client):
+        self.client = client
             
     def get_account_details(self):
         """Access account details."""
         method = 'GET'
-        url = '/rest/v1/users/%s' % self.sc.sauce_username
-        json_data = self.sc.request(method, url)
+        url = '/rest/v1/users/%s' % self.client.sauce_username
+        json_data = self.client.request(method, url)
         attributes = json.loads(json_data)
         return attributes
 
     def get_account_limits(self):
         """Access account limits."""
         method = 'GET'
-        url = '/rest/v1/%s/limits' % self.sc.sauce_username
-        json_data = self.sc.request(method, url)
+        url = '/rest/v1/%s/limits' % self.client.sauce_username
+        json_data = self.client.request(method, url)
         attributes = json.loads(json_data)
         return attributes
 
