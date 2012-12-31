@@ -30,7 +30,6 @@ Source code is stored in a git repository and van be retrieved with various prot
 
     $ git clone git://github.com/cgoldberg/sauceclient.git
 
-
 Running the Unit Tests
 ======================
 
@@ -54,4 +53,14 @@ Running the Unit Tests
 
     $ python -m unittest discover
 
+Generating the Documentation
+============================
 
+ * requires: `python-sphinx <http://sphinx-doc.org>`_
+ * build the docs locally::
+
+     $ git clone git@github.com:cgoldberg/sauceclient.git
+     $ cd sauceclient
+     $ sphinx-build -b html doc html_docs
+
+ * generated results end up in ``./html_docs/``
