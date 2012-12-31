@@ -2,13 +2,13 @@
 sauceclient
 ===========
 
-*Python client library for Sauce Labs API.*
+**Python client library for Sauce Labs API.**
 
 -------------
 documentation
 -------------
 
-please see docs at: http://cgoldberg.github.com/sauceclient/ 
+**please see docs at: http://cgoldberg.github.com/sauceclient/** 
 
 ... or generate the html documentation yourself:
 
@@ -47,7 +47,7 @@ running the sauceclient unit tests
 
 * tests are located in::
 
-    ``sauceclient/test_sauceclient.py``
+    sauceclient/test_sauceclient.py
     
 * edit ``test_sauceclient.py``, and change the 
   test parameters to match your Sauce Labs account info::

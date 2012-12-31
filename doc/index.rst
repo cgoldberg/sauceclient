@@ -16,7 +16,8 @@ sauceclient Python package -- documentation
 
  or:
 
- * download `Package <http://pypi.python.org/pypi/sauceclient#downloads>`_ (souce tarball) from `PyPI <http://pypi.python.org/pypi>`_, unarchive, and run::
+ * download `Package <http://pypi.python.org/pypi/sauceclient#downloads>`_ (souce tarball)
+   from `PyPI <http://pypi.python.org/pypi>`_, unarchive, and run::
 
     python setup.py install
 
@@ -76,6 +77,7 @@ Prerequisite Reading
     :maxdepth: 4
     
     selenium_on_sauce
+    unit_tests
     
 Related Links
 =============
