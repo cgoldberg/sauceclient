@@ -18,38 +18,38 @@ Cloning the Repository
 
 Source code is stored in a git repository and van be retrieved with various protocols:
 
-* SSH::
+ * SSH::
 
     $ git clone git@github.com:cgoldberg/sauceclient.git
-    
-* HTTPS::
+
+ * HTTPS::
 
     $ git clone https://github.com/cgoldberg/sauceclient.git
 
-* Git Read-only::
+ * Git Read-only::
 
     $ git clone git://github.com/cgoldberg/sauceclient.git
 
 Running the Unit Tests
 ======================
 
-* clone the repo::
+ * clone the repo::
 
     $ git clone git@github.com:cgoldberg/sauceclient.git
     $ cd sauceclient
 
-* tests are located in::
+ * tests are located in::
 
     sauceclient/test_sauceclient.py
-    
-* edit ``test_sauceclient.py``, and change the 
-  test parameters to match your Sauce Labs account info::
+
+ * edit ``test_sauceclient.py``, and change the 
+   test parameters to match your Sauce Labs account info::
 
     SAUCE_USERNAME = 'your-username-string'
     SAUCE_ACCESS_KEY = 'your-access-key-string'
     TEST_JOB_ID = 'a-valid-test-job-id'
 
-* run tests by executing ``test_sauceclient.py``, or using ``unittest`` discovery::
+ * run tests by executing ``test_sauceclient.py``, or using ``unittest`` discovery::
 
     $ python -m unittest discover
 
