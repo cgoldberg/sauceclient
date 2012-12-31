@@ -43,7 +43,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'sauceclient'
-copyright = u'2012, Corey Goldberg'
+copyright = u'2013, Corey Goldberg'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

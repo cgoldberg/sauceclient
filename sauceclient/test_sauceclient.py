@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-#   Copyright (c) 2012 Corey Goldberg
+#   Copyright (c) 2013 Corey Goldberg
 #
 #   This file is part of: sauceclient
 #   https://github.com/cgoldberg/sauceclient
