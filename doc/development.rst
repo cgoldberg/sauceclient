@@ -8,15 +8,18 @@ Requirements
  * Python 2.7
  * git
 
-Source Code Repository
-======================
+Source Code Repository (GitHub)
+===============================
 
  * `sauceclient` on `GitHub <https://github.com/cgoldberg/sauceclient>`_
 
-Cloning the Repository
-======================
+Getting the Code
+================
 
-Source code is stored in a git repository and van be retrieved with various protocols:
+Source code is stored in a git repository and can be retrieved with
+``git`` using various protocols.
+
+Clone the Repository:
 
  * SSH::
 
