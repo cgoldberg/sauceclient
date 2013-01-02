@@ -13,23 +13,26 @@
 #
 
 
-""" setup/install script for sauceclient. """
+"""setup/install script for sauceclient."""
 
 
 import os
+import sys
 from distutils.core import setup
-
-import sauceclient
-
 
 this_dir = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(this_dir, 'README.rst')) as f:
     LONG_DESCRIPTION = '\n' + f.read()
 
+sys.path.append(os.path.join(this_dir, 'sauceclient'))
+
+from sauceclient import __version__
+
 
 setup(
     name='sauceclient',
-    version=sauceclient.__version__,
+    version=__version__,
+    package_dir={'': 'sauceclient'},
     packages=['sauceclient'],
     author='Corey Goldberg',
     author_email='cgoldberg _at_ gmail.com',
