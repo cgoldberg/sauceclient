@@ -1,4 +1,16 @@
 #!/usr/bin/env python
+#
+#   Copyright (c) 2013 Corey Goldberg
+#
+#   This file is part of: sauceclient
+#   https://github.com/cgoldberg/sauceclient
+#
+#   Licensed under the Apache License, Version 2.0 (the "License");
+#   you may not use this file except in compliance with the License.
+#   You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
 
 
 """ setup/install script for sauceclient. """
@@ -33,7 +45,9 @@ setup(
         'License :: OSI Approved :: Apache Software License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
+        'Topic :: Software Development :: Libraries',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Software Development :: Testing',
     ]
