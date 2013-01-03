@@ -2,4 +2,4 @@ include LICENSE
 include README.rst
 include setup.py
 include sauceclient.py
-inlcude test_sauceclient.py
+include test_sauceclient.py
