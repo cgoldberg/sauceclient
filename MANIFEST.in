@@ -1,4 +1,5 @@
 include LICENSE
 include README.rst
 include setup.py
-recursive-include sauceclient *.py
+include sauceclient.py
+inlcude test_sauceclient.py

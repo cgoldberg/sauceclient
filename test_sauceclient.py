@@ -13,10 +13,10 @@
 #
 
 
-import sauceclient
-
 import random
 import unittest
+
+import sauceclient
 
 
 # set these to run tests
@@ -219,5 +219,5 @@ class TestUsage(unittest.TestCase):
 
 if __name__ == '__main__':
     if not all((SAUCE_USERNAME, SAUCE_ACCESS_KEY, TEST_JOB_ID)):
-        raise SystemExit('Change your credentials (username/access-key)')
+        raise SystemExit('Set your credentials (username/access-key)')
     unittest.main(verbosity=2)

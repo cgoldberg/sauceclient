@@ -17,12 +17,12 @@
 #     http://saucelabs.com/docs/rest
 
 
-__version__ = '0.1.0dev'
-
-
 import base64
 import httplib
 import json
+
+
+__version__ = '0.1.0dev'
 
 
 class SauceClient(object):

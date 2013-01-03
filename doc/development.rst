@@ -41,10 +41,6 @@ Running the Unit Tests
     $ git clone git@github.com:cgoldberg/sauceclient.git
     $ cd sauceclient
 
- * tests are located in::
-
-    sauceclient/test_sauceclient.py
-
  * edit ``test_sauceclient.py``, and change the 
    test parameters to match your Sauce Labs account info::
 

@@ -17,14 +17,12 @@
 
 
 import os
-import sys
 from distutils.core import setup
 
 this_dir = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(this_dir, 'README.rst')) as f:
     LONG_DESCRIPTION = '\n' + f.read()
 
-sys.path.append(os.path.join(this_dir, 'sauceclient'))
 
 from sauceclient import __version__
 
@@ -32,8 +30,7 @@ from sauceclient import __version__
 setup(
     name='sauceclient',
     version=__version__,
-    package_dir={'': 'sauceclient'},
-    packages=['sauceclient'],
+    py_modules=['sauceclient'],
     author='Corey Goldberg',
     author_email='cgoldberg _at_ gmail.com',
     description='Python client library for Sauce Labs API.',
