@@ -4,7 +4,7 @@ sauceclient Python package -- documentation
 
 **Python client library for Sauce Labs API.**
 
-about sauceclient
+About sauceclient
 =================
 
 `sauceclient` is a Python client library, used for accessing the Sauce Labs
@@ -20,8 +20,8 @@ service.  (That is done via `Selenium WebDriver`_).
 
 .. _Selenium WebDriver: selenium_on_sauce.html
 
-Install (coming soon)
-=====================
+Install
+=======
 
  * with `pip`::
  
@@ -34,7 +34,7 @@ Install (coming soon)
 
      python setup.py install
 
-about Sauce Labs
+About Sauce Labs
 ================
 
 `Sauce Labs <https://saucelabs.com>`_ is a service that allows you to run
@@ -47,7 +47,7 @@ use. `Open Sauce <https://saucelabs.com/signup/plan/OSS>`_ accounts are also
 free.  Open Sauce allows unlimited automated code minutes, and 3 parrallel 
 VM's (simultaneous tests), if you have a verified Open Source project.
 
-example sauceclient usage
+Example sauceclient Usage
 =========================
 
  * public access::
@@ -92,9 +92,6 @@ Development
 
     development
 
-  
-    
-    
 Related Links
 =============
 

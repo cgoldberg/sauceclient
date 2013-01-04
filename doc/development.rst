@@ -29,9 +29,6 @@ Clone the Repository:
 
     $ git clone https://github.com/cgoldberg/sauceclient.git
 
- * Git Read-only::
-
-    $ git clone git://github.com/cgoldberg/sauceclient.git
 
 Running the Unit Tests
 ======================
