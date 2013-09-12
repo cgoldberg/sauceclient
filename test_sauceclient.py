@@ -101,6 +101,14 @@ class TestJobs(unittest.TestCase):
         self.assertEqual(job_attributes['id'], TEST_JOB_ID)
         self.assertIn(job_attributes['owner'], self.sc.sauce_username)
 
+    def test_get_job_assets(self):
+        job_assets = self.sc.jobs.get_job_assets(TEST_JOB_ID)
+        self.assertIsInstance(job_assets, dict)
+        self.assertIn('sauce-log', job_assets)
+        self.assertIn('screenshots', job_assets)
+        self.assertIn('selenium-log', job_assets)
+        self.assertIn('video', job_assets)
+
     def test_update_job(self):
         job_attributes = self.sc.jobs.update_job(TEST_JOB_ID)
         self.assertIsInstance(job_attributes, dict)
