@@ -17,7 +17,7 @@
 
 
 import os
-from distutils.core import setup
+from setuptools import setup
 
 this_dir = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(this_dir, 'README.rst')) as f:
