@@ -12,7 +12,7 @@
 #       http://www.apache.org/licenses/LICENSE-2.0
 #
 
-
+import os
 import random
 import unittest
 
@@ -20,9 +20,9 @@ import sauceclient
 
 
 # set these to run tests
-SAUCE_USERNAME = ''
-SAUCE_ACCESS_KEY = ''
-TEST_JOB_ID = ''  # any valid job
+SAUCE_USERNAME = os.environ.get('SAUCE_USERNAME', '')
+SAUCE_ACCESS_KEY = os.environ.get('SAUCE_ACCESS_KEY', '')
+TEST_JOB_ID = os.environ.get('TEST_JOB_ID', '')  # any valid job
 
 
 class TestSauceClient(unittest.TestCase):
@@ -167,7 +167,6 @@ class TestInformation(unittest.TestCase):
         self.assertIn('long_name', browser)
         self.assertIn('long_version', browser)
         self.assertIn('os', browser)
-        self.assertIn('preferred_version', browser)
         self.assertIn('selenium_name', browser)
         self.assertIn('short_version', browser)
         self.assertIsInstance(browser['selenium_name'], unicode)
