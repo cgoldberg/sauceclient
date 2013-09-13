@@ -17,7 +17,13 @@
 
 
 import os
-from setuptools import setup
+
+# Use setuptools if it's available, fall back to distutils if not
+try:
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
+
 
 this_dir = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(this_dir, 'README.rst')) as f:

@@ -7,6 +7,7 @@ Requirements
 
  * Python 2.7
  * git
+ * setuptools (optional)
 
 Source Code Repository (GitHub)
 ===============================
@@ -30,8 +31,11 @@ Clone the Repository:
     $ git clone https://github.com/cgoldberg/sauceclient.git
 
 
-Install package in development mode
-===================================
+Install package in development mode (optional)
+==============================================
+
+Note: you must have the `setuptools` Python package installed on your local
+machine to install `sauceclient` in development mode.
 
  * clone the repo::
 
