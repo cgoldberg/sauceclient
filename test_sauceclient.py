@@ -13,7 +13,8 @@
 #
 
 
-import random
+import httplib
+import osimport random
 import unittest
 
 import sauceclient
@@ -107,6 +108,14 @@ class TestJobs(unittest.TestCase):
         self.assertIn('id', job_attributes)
         self.assertEqual(job_attributes['id'], TEST_JOB_ID)
 
+    def test_get_auth_token(self):
+        """Verify that the auth token is valid."""
+        token = self.sc.jobs.get_auth_token(TEST_JOB_ID)
+        url = '/jobs/%s?auth=%s' % (TEST_JOB_ID, token)
+        connection = httplib.HTTPSConnection('saucelabs.com')
+        connection.request('GET', url, None)
+        response = connection.getresponse()
+        self.assertEqual(response.status, 200)
 
 class TestProvisioning(unittest.TestCase):
 

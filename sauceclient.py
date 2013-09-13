@@ -18,6 +18,8 @@
 
 
 import base64
+import hashlib
+import hmac
 import httplib
 import json
 
@@ -110,6 +112,15 @@ class Jobs(object):
         json_data = self.client.request(method, url, body=body)
         attributes = json.loads(json_data)
         return attributes
+
+    def get_auth_token(self, job_id):
+        """Return an authentication token associated with the job.
+
+        See: <http://saucelabs.com/docs/integration#public-job-links>
+        """
+        key = "%s:%s" % (self.client.sauce_username,
+                         self.client.sauce_access_key)
+        return hmac.new(key, job_id, hashlib.md5).hexdigest()
 
 
 class Provisioning(object):
