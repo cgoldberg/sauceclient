@@ -38,7 +38,7 @@ Running the Unit Tests
     $ git clone git@github.com:cgoldberg/sauceclient.git
     $ cd sauceclient
 
-* set the following environment variables::
+ * set the following environment variables::
 
     $ export SAUCE_USERNAME='your-username-string'
     $ export SAUCE_ACCESS_KEY='your-access-key-string'
