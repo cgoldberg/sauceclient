@@ -25,6 +25,16 @@ SAUCE_ACCESS_KEY = ''
 TEST_JOB_ID = ''  # any valid job
 
 
+def assert_is_utf8(content, test_obj):
+    if sauceclient.is_py2:
+        test_obj.assertIsInstance(content, unicode)
+    else:
+        try:
+            content.encode('utf-8')
+        except UnicodeEncodeError:
+            assert False
+
+
 class TestSauceClient(unittest.TestCase):
 
     def setUp(self):
@@ -52,7 +62,6 @@ class TestSauceClient(unittest.TestCase):
         json_data = self.sc.request('GET', url)
         self.assertIsInstance(json_data, str)
 
-
 class TestJobs(unittest.TestCase):
 
     def setUp(self):
@@ -65,7 +74,7 @@ class TestJobs(unittest.TestCase):
         job_ids = self.sc.jobs.get_job_ids()
         self.assertIsInstance(job_ids, list)
         job_id = random.choice(job_ids)
-        self.assertIsInstance(job_id, unicode)
+        assert_is_utf8(job_id, self)
         self.assertTrue(job_id.isalnum())
 
     def test_get_jobs(self):
@@ -73,7 +82,7 @@ class TestJobs(unittest.TestCase):
         self.assertIsInstance(jobs, list)
         job = random.choice(jobs)
         self.assertIn('id', job)
-        self.assertIsInstance(job['id'], unicode)
+        assert_is_utf8(job['id'], self)
         self.assertEqual(job['owner'], self.sc.sauce_username)
 
     def test_get_job_attributes(self):
@@ -143,7 +152,7 @@ class TestInformation(unittest.TestCase):
         self.assertIn('service_operational', status)
         self.assertIn('status_message', status)
         self.assertIn('wait_time', status)
-        self.assertIsInstance(status['status_message'], unicode)
+        assert_is_utf8(status['status_message'], self)
         self.assertTrue(status['service_operational'])
 
     def test_get_status_with_auth(self):
@@ -158,7 +167,7 @@ class TestInformation(unittest.TestCase):
         self.assertIn('wait_time', status)
         self.assertTrue(status['service_operational'])
 
-    def test_get_browswers(self):
+    def test_get_browsers(self):
         browsers = self.sc.information.get_browsers()
         self.assertIsInstance(browsers, list)
         self.assertTrue(len(browsers) > 0)
@@ -170,7 +179,7 @@ class TestInformation(unittest.TestCase):
         self.assertIn('preferred_version', browser)
         self.assertIn('selenium_name', browser)
         self.assertIn('short_version', browser)
-        self.assertIsInstance(browser['selenium_name'], unicode)
+        assert_is_utf8(browser['selenium_name'], self)
 
     def test_get_count(self):
         count = self.sc.information.get_count()

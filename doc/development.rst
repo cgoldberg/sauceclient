@@ -5,7 +5,7 @@ sauceclient Development
 Requirements
 ============
 
- * Python 2.7
+ * Python 2.7 or 3.x
  * git
 
 Source Code Repository (GitHub)

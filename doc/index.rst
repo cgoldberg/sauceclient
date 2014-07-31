@@ -40,11 +40,11 @@ About Sauce Labs
 `Sauce Labs <https://saucelabs.com>`_ is a service that allows you to run
 remote Selenium WebDriver tests from their cloud. They have VM's with 100+
 browser/OS combinations, allowing comprehensive cross-browser cross-platform
-test coverage. Sauce Labs is a paid service, offerning various 
+test coverage. Sauce Labs is a paid service, offering various
 `usage plans <https://saucelabs.com/pricing>`_. They offer 
 `free accounts <https://saucelabs.com/signup/plan/free>`_ for limited/trial
 use. `Open Sauce <https://saucelabs.com/signup/plan/OSS>`_ accounts are also
-free.  Open Sauce allows unlimited automated code minutes, and 3 parrallel 
+free.  Open Sauce allows unlimited automated code minutes, and 3 parallel
 VM's (simultaneous tests), if you have a verified Open Source project.
 
 Example sauceclient Usage

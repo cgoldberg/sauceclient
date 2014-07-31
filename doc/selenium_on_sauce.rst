@@ -5,7 +5,7 @@ Selenium WebDriver in Python (local and remote)
 Requirements
 ============
 
- * Python 2.7
+ * Python 2.7 or 3.x
  * Selenium 2.x bindings (``pip install selenium``)
 
 Selenium - Local WebDriver example

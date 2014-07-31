@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-#   Copyright (c) 2013 Corey Goldberg
+# Copyright (c) 2013 Corey Goldberg
 #
 #   This file is part of: sauceclient
 #   https://github.com/cgoldberg/sauceclient
@@ -18,15 +18,26 @@
 
 
 import base64
-import httplib
+import sys
 import json
 
+__version__ = '0.2.0'
 
-__version__ = '0.1.0'
+is_py2 = sys.version_info.major is 2
+
+if is_py2:
+    import httplib as http_client
+else:
+    import http.client as http_client
+
+
+def json_loads(json_data):
+    if not is_py2:
+        json_data = json_data.decode(encoding='UTF-8')
+    return json.loads(json_data)
 
 
 class SauceClient(object):
-
     def __init__(self, sauce_username=None, sauce_access_key=None):
         self.sauce_username = sauce_username
         self.sauce_access_key = sauce_access_key
@@ -37,9 +48,7 @@ class SauceClient(object):
         self.usage = Usage(self)
 
     def make_headers(self):
-        base64string = base64.encodestring(
-            '%s:%s' % (self.sauce_username, self.sauce_access_key)
-        )[:-1]
+        base64string = self.get_encoded_auth_string()
         headers = {
             'Authorization': 'Basic %s' % base64string,
             'Content-Type': 'application/json',
@@ -47,7 +56,7 @@ class SauceClient(object):
         return headers
 
     def request(self, method, url, body=None):
-        connection = httplib.HTTPSConnection('saucelabs.com')
+        connection = http_client.HTTPSConnection('saucelabs.com')
         connection.request(method, url, body, headers=self.headers)
         response = connection.getresponse()
         json_data = response.read()
@@ -57,9 +66,16 @@ class SauceClient(object):
                             (response.status, response.reason))
         return json_data
 
+    def get_encoded_auth_string(self):
+        auth_info = '%s:%s' % (self.sauce_username, self.sauce_access_key)
+        if is_py2:
+            base64string = base64.encodestring(auth_info)[:-1]
+        else:
+            base64string = base64.b64encode(auth_info.encode(encoding='UTF-8')).decode(encoding='UTF-8')
+        return base64string
+
 
 class Jobs(object):
-
     def __init__(self, client):
         self.client = client
 
@@ -68,7 +84,7 @@ class Jobs(object):
         method = 'GET'
         url = '/rest/v1/%s/jobs' % self.client.sauce_username
         json_data = self.client.request(method, url)
-        jobs = json.loads(json_data)
+        jobs = json_loads(json_data)
         job_ids = [attr['id'] for attr in jobs]
         return job_ids
 
@@ -77,7 +93,7 @@ class Jobs(object):
         method = 'GET'
         url = '/rest/v1/%s/jobs?full=true' % self.client.sauce_username
         json_data = self.client.request(method, url)
-        jobs = json.loads(json_data)
+        jobs = json_loads(json_data)
         return jobs
 
     def get_job_attributes(self, job_id):
@@ -85,7 +101,7 @@ class Jobs(object):
         method = 'GET'
         url = '/rest/v1/%s/jobs/%s' % (self.client.sauce_username, job_id)
         json_data = self.client.request(method, url)
-        attributes = json.loads(json_data)
+        attributes = json_loads(json_data)
         return attributes
 
     def update_job(self, job_id, build_num=None, custom_data=None,
@@ -108,12 +124,11 @@ class Jobs(object):
         method = 'PUT'
         url = '/rest/v1/%s/jobs/%s' % (self.client.sauce_username, job_id)
         json_data = self.client.request(method, url, body=body)
-        attributes = json.loads(json_data)
+        attributes = json_loads(json_data)
         return attributes
 
 
 class Provisioning(object):
-
     def __init__(self, client):
         self.client = client
 
@@ -122,7 +137,7 @@ class Provisioning(object):
         method = 'GET'
         url = '/rest/v1/users/%s' % self.client.sauce_username
         json_data = self.client.request(method, url)
-        attributes = json.loads(json_data)
+        attributes = json_loads(json_data)
         return attributes
 
     def get_account_limits(self):
@@ -130,12 +145,11 @@ class Provisioning(object):
         method = 'GET'
         url = '/rest/v1/%s/limits' % self.client.sauce_username
         json_data = self.client.request(method, url)
-        attributes = json.loads(json_data)
+        attributes = json_loads(json_data)
         return attributes
 
 
 class Information(object):
-
     def __init__(self, client):
         self.client = client
 
@@ -144,7 +158,7 @@ class Information(object):
         method = 'GET'
         url = '/rest/v1/info/status'
         json_data = self.client.request(method, url)
-        status = json.loads(json_data)
+        status = json_loads(json_data)
         return status
 
     def get_browsers(self):
@@ -152,7 +166,7 @@ class Information(object):
         method = 'GET'
         url = '/rest/v1/info/browsers'
         json_data = self.client.request(method, url)
-        browsers = json.loads(json_data)
+        browsers = json_loads(json_data)
         return browsers
 
     def get_count(self):
@@ -160,12 +174,11 @@ class Information(object):
         method = 'GET'
         url = '/rest/v1/info/counter'
         json_data = self.client.request(method, url)
-        count = json.loads(json_data)
+        count = json_loads(json_data)
         return count
 
 
 class Usage(object):
-
     def __init__(self, client):
         self.client = client
 
@@ -177,7 +190,7 @@ class Usage(object):
         method = 'GET'
         url = '/rest/v1/%s/activity' % self.client.sauce_username
         json_data = self.client.request(method, url)
-        activity = json.loads(json_data)
+        activity = json_loads(json_data)
         return activity
 
     def get_historical_usage(self):
@@ -185,5 +198,5 @@ class Usage(object):
         method = 'GET'
         url = '/rest/v1/users/%s/usage' % self.client.sauce_username
         json_data = self.client.request(method, url)
-        historical_usage = json.loads(json_data)
+        historical_usage = json_loads(json_data)
         return historical_usage
