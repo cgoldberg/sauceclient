@@ -38,12 +38,11 @@ Running the Unit Tests
     $ git clone git@github.com:cgoldberg/sauceclient.git
     $ cd sauceclient
 
- * edit ``test_sauceclient.py``, and change the 
-   test parameters to match your Sauce Labs account info::
+ * set the following environment variables::
 
-    SAUCE_USERNAME = 'your-username-string'
-    SAUCE_ACCESS_KEY = 'your-access-key-string'
-    TEST_JOB_ID = 'a-valid-test-job-id'
+    $ export SAUCE_USERNAME='your-username-string'
+    $ export SAUCE_ACCESS_KEY='your-access-key-string'
+    $ export TEST_JOB_ID='a-valid-test-job-id'
 
  * run tests by executing ``test_sauceclient.py``, or using ``unittest`` discovery::
 
