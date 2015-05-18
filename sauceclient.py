@@ -18,11 +18,15 @@
 
 
 import base64
-import httplib
 import json
+from sys import version_info
+if version_info.major >= 3:
+    import http.client as httplib
+else:
+    import httplib
 
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 
 class SauceClient(object):
