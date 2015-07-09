@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-#   Copyright (c) 2013 Corey Goldberg
+#   Copyright (c) 2013-2015 Corey Goldberg
 #
 #   This file is part of: sauceclient
 #   https://github.com/cgoldberg/sauceclient
@@ -35,7 +35,7 @@ setup(
     author_email='cgoldberg _at_ gmail.com',
     description='Python client library for Sauce Labs API.',
     long_description=LONG_DESCRIPTION,
-    url='http://cgoldberg.github.com/sauceclient/',
+    url='https://github.com/cgoldberg/sauceclient',
     download_url='http://pypi.python.org/pypi/sauceclient',
     keywords='saucelabs selenium testing'.split(),
     license='Apache v2.0',
