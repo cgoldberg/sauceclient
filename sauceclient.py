@@ -21,7 +21,7 @@ import base64
 import sys
 import json
 
-__version__ = '0.3.0'
+__version__ = '0.2.1'
 
 is_py2 = sys.version_info.major is 2
 
