@@ -36,6 +36,10 @@ def json_loads(json_data):
         json_data = json_data.decode(encoding='UTF-8')
     return json.loads(json_data)
 
+class SauceException(Exception):
+    def __init__(self, *args, **kwargs):
+        super(SauceException, self).__init__(*args, **kwargs)
+        self.response = kwargs.get("response")
 
 class SauceClient(object):
     def __init__(self, sauce_username=None, sauce_access_key=None):
@@ -62,8 +66,8 @@ class SauceClient(object):
         json_data = response.read()
         connection.close()
         if response.status != 200:
-            raise Exception('%s: %s.\nSauce Status NOT OK' %
-                            (response.status, response.reason))
+            raise SauceException('%s: %s.\nSauce Status NOT OK' %
+                                 (response.status, response.reason), response=response)
         return json_data
 
     def get_encoded_auth_string(self):
