@@ -14,7 +14,7 @@ API to retrieve and update information about resources such as:
  * Jobs
  * Provisioning
  * Usage
- *Assets (Logs, Videos, Screenshots)
+ * Assets (Logs, Videos, Screenshots)
 
 `sauceclient` is *not* used for running your tests on Sauce Labs'
 service.  (That is done via `Selenium WebDriver`_).
