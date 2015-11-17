@@ -5,7 +5,6 @@ Generating the Docs
 
 to generate the docs...
 
-from top sauceclient directory, run:
+from sauceclient directory, run:
   $ sphinx-build -b html doc html_docs
-generated results end up in './html_docs/'
-
+docs are generated in: html_docs/

@@ -1,29 +1,32 @@
-===========
-sauceclient
-===========
+==========================
+sauceclient Python package
+==========================
 
 **Python client library for Sauce Labs API.**
 
--------------
-documentation
--------------
+About sauceclient
+=================
 
-**please see docs at: http://cgoldberg.github.io/sauceclient/**
+`sauceclient` is a Python client library, used for accessing the Sauce Labs
+API to retrieve and update information about resources such as:
 
------------------
-about sauceclient
------------------
+ * Information
+ * Jobs
+ * Provisioning
+ * Usage
+ *Assets (Logs, Videos, Screenshots)
 
-``sauceclient`` is a Python client library used to retrieve and update information about resources.  The Sauce Labs API provides the following resources:
+`sauceclient` is *not* used for running your tests on Sauce Labs'
+service.  (That is done via `Selenium WebDriver`_).
 
-* Information
-* Jobs
-* Provisioning
-* Usage
+.. _Selenium WebDriver: selenium_on_sauce.html
 
+Install
+=======
 
-``sauceclient`` is *not* for running your tests on Sauce Labs'
-service.  (That is done via Selenium WebDriver).
+ * with `pip`::
+
+      pip install sauceclient
 
 About Sauce Labs
 ================
@@ -53,3 +56,9 @@ Example sauceclient Usage
     )
     job_ids = sc.jobs.get_job_ids()
 
+Related Links
+=============
+
+* `Sauce Labs <https://saucelabs.com>`_
+* `Sauce Labs REST API documentation <http://saucelabs.com/docs/rest>`_
+* `Python bindings for Selenium WebDriver <http://pypi.python.org/pypi/selenium>`_
