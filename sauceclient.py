@@ -131,6 +131,15 @@ class Jobs(object):
         attributes = json_loads(json_data)
         return attributes
 
+    def get_job_assets(self, job_id):
+        """Get the list of assets for the specified job."""
+        method = 'GET'
+        url = '/rest/v1/%s/jobs/%s/assets' % (self.client.sauce_username,
+                                              job_id)
+        json_data = self.client.request(method, url)
+        assets = json.loads(json_data)
+        return assets
+
 
 class Provisioning(object):
     def __init__(self, client):
