@@ -38,8 +38,8 @@ def json_loads(json_data):
 
 class SauceException(Exception):
     def __init__(self, *args, **kwargs):
-        super(SauceException, self).__init__(*args, **kwargs)
-        self.response = kwargs.get("response")
+        super(SauceException, self).__init__(*args)
+        self.response = kwargs.get('response')
 
 class SauceClient(object):
     def __init__(self, sauce_username=None, sauce_access_key=None):
