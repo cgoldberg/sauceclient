@@ -137,7 +137,7 @@ class Jobs(object):
         url = '/rest/v1/%s/jobs/%s/assets' % (self.client.sauce_username,
                                               job_id)
         json_data = self.client.request(method, url)
-        assets = json.loads(json_data)
+        assets = json_loads(json_data)
         return assets
 
 
