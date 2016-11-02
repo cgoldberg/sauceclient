@@ -63,7 +63,7 @@ class SauceClient(object):
         connection = http_client.HTTPSConnection('saucelabs.com')
         connection.request(method, url, body, headers=self.headers)
         response = connection.getresponse()
-        json_data = response.read()
+        json_data = json_loads(response.read())
         connection.close()
         if response.status != 200:
             raise SauceException('%s: %s.\nSauce Status NOT OK' %
@@ -87,26 +87,20 @@ class Jobs(object):
         """List all jobs id's belonging to the user."""
         method = 'GET'
         url = '/rest/v1/%s/jobs' % self.client.sauce_username
-        json_data = self.client.request(method, url)
-        jobs = json_loads(json_data)
-        job_ids = [attr['id'] for attr in jobs]
-        return job_ids
+        jobs = self.client.request(method, url)
+        return [attr['id'] for attr in jobs]
 
     def get_jobs(self):
         """List all jobs belonging to the user."""
         method = 'GET'
         url = '/rest/v1/%s/jobs?full=true' % self.client.sauce_username
-        json_data = self.client.request(method, url)
-        jobs = json_loads(json_data)
-        return jobs
+        return self.client.request(method, url)
 
     def get_job_attributes(self, job_id):
         """Get information for the specified job."""
         method = 'GET'
         url = '/rest/v1/%s/jobs/%s' % (self.client.sauce_username, job_id)
-        json_data = self.client.request(method, url)
-        attributes = json_loads(json_data)
-        return attributes
+        return self.client.request(method, url)
 
     def update_job(self, job_id, build_num=None, custom_data=None,
                    name=None, passed=None, public=None, tags=None):
@@ -127,18 +121,14 @@ class Jobs(object):
         body = json.dumps(content)
         method = 'PUT'
         url = '/rest/v1/%s/jobs/%s' % (self.client.sauce_username, job_id)
-        json_data = self.client.request(method, url, body=body)
-        attributes = json_loads(json_data)
-        return attributes
+        return self.client.request(method, url, body=body)
 
     def get_job_assets(self, job_id):
         """Get the list of assets for the specified job."""
         method = 'GET'
         url = '/rest/v1/%s/jobs/%s/assets' % (self.client.sauce_username,
                                               job_id)
-        json_data = self.client.request(method, url)
-        assets = json_loads(json_data)
-        return assets
+        return self.client.request(method, url)
 
 
 class Provisioning(object):
@@ -149,17 +139,13 @@ class Provisioning(object):
         """Access account details."""
         method = 'GET'
         url = '/rest/v1/users/%s' % self.client.sauce_username
-        json_data = self.client.request(method, url)
-        attributes = json_loads(json_data)
-        return attributes
+        return self.client.request(method, url)
 
     def get_account_limits(self):
         """Access account limits."""
         method = 'GET'
         url = '/rest/v1/%s/limits' % self.client.sauce_username
-        json_data = self.client.request(method, url)
-        attributes = json_loads(json_data)
-        return attributes
+        return self.client.request(method, url)
 
 
 class Information(object):
@@ -170,25 +156,19 @@ class Information(object):
         """Access the current status of Sauce Labs' services."""
         method = 'GET'
         url = '/rest/v1/info/status'
-        json_data = self.client.request(method, url)
-        status = json_loads(json_data)
-        return status
+        return self.client.request(method, url)
 
-    def get_browsers(self):
-        """Get details of all browsers currently supported on Sauce Labs."""
+    def get_platforms(self, automation_api='all'):
+        """Get details of OS and browser platforms currently supported on Sauce Labs."""
         method = 'GET'
-        url = '/rest/v1/info/browsers'
-        json_data = self.client.request(method, url)
-        browsers = json_loads(json_data)
-        return browsers
+        url = '/rest/v1/info/platforms/%s' % automation_api
+        return self.client.request(method, url)
 
-    def get_count(self):
-        """Get number of test executed so far on Sauce Labs."""
+    def get_appium_eol_dates(self):
+        """Get details of platforms currently supported on Sauce Labs."""
         method = 'GET'
-        url = '/rest/v1/info/counter'
-        json_data = self.client.request(method, url)
-        count = json_loads(json_data)
-        return count
+        url = '/rest/v1/info/platforms/appium/eol'
+        return self.client.request(method, url)
 
 
 class Usage(object):
@@ -202,14 +182,10 @@ class Usage(object):
         """
         method = 'GET'
         url = '/rest/v1/%s/activity' % self.client.sauce_username
-        json_data = self.client.request(method, url)
-        activity = json_loads(json_data)
-        return activity
+        return self.client.request(method, url)
 
     def get_historical_usage(self):
         """Access historical account usage."""
         method = 'GET'
         url = '/rest/v1/users/%s/usage' % self.client.sauce_username
-        json_data = self.client.request(method, url)
-        historical_usage = json_loads(json_data)
-        return historical_usage
+        return self.client.request(method, url)

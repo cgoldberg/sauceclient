@@ -58,9 +58,9 @@ class TestSauceClient(unittest.TestCase):
         self.assertEqual('application/json', headers['Content-Type'])
 
     def test_request_get(self):
-        url = 'rest/v1/info/status'
+        url = '/rest/v1/info/status'
         json_data = self.sc.request('GET', url)
-        self.assertIsInstance(json_data, str)
+        self.assertIsInstance(json_data, dict)
 
 class TestJobs(unittest.TestCase):
 
@@ -175,23 +175,52 @@ class TestInformation(unittest.TestCase):
         self.assertIn('wait_time', status)
         self.assertTrue(status['service_operational'])
 
-    def test_get_browsers(self):
-        browsers = self.sc.information.get_browsers()
-        self.assertIsInstance(browsers, list)
-        self.assertTrue(len(browsers) > 0)
-        browser = random.choice(browsers)
-        self.assertIn('automation_backend', browser)
-        self.assertIn('long_name', browser)
-        self.assertIn('long_version', browser)
-        self.assertIn('os', browser)
-        self.assertIn('selenium_name', browser)
-        self.assertIn('short_version', browser)
-        assert_is_utf8(browser['selenium_name'], self)
+    def test_get_platforms(self):
+        platforms = self.sc.information.get_platforms()
+        self.assertIsInstance(platforms, list)
+        self.assertTrue(len(platforms) > 0)
+        platform = random.choice(platforms)
+        self.assertIn('api_name', platform)
+        self.assertIn('automation_backend', platform)
+        self.assertIn('latest_stable_version', platform)
+        self.assertIn('long_name', platform)
+        self.assertIn('long_version', platform)
+        self.assertIn('os', platform)
+        self.assertIn('short_version', platform)
+        assert_is_utf8(platform['api_name'], self)
 
-    def test_get_count(self):
-        count = self.sc.information.get_count()
-        self.assertIsInstance(count, int)
-        self.assertTrue(count > 20000000)
+    def test_get_platforms_webdriver(self):
+        platforms = self.sc.information.get_platforms('webdriver')
+        self.assertIsInstance(platforms, list)
+        self.assertTrue(len(platforms) > 0)
+        platform = random.choice(platforms)
+        self.assertIn('api_name', platform)
+        self.assertIn('automation_backend', platform)
+        self.assertIn('latest_stable_version', platform)
+        self.assertIn('long_name', platform)
+        self.assertIn('long_version', platform)
+        self.assertIn('os', platform)
+        self.assertIn('short_version', platform)
+        assert_is_utf8(platform['api_name'], self)
+
+    def test_get_platforms_appium(self):
+        platforms = self.sc.information.get_platforms('appium')
+        self.assertIsInstance(platforms, list)
+        self.assertTrue(len(platforms) > 0)
+        platform = random.choice(platforms)
+        self.assertIn('api_name', platform)
+        self.assertIn('automation_backend', platform)
+        self.assertIn('latest_stable_version', platform)
+        self.assertIn('long_name', platform)
+        self.assertIn('long_version', platform)
+        self.assertIn('os', platform)
+        self.assertIn('short_version', platform)
+        assert_is_utf8(platform['api_name'], self)
+
+    def test_get_appium_eol_dates(self):
+        versions = self.sc.information.get_appium_eol_dates()
+        self.assertIsInstance(versions, dict)
+        self.assertTrue(len(versions) > 0)
 
 
 class TestUsage(unittest.TestCase):
