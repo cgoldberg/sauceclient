@@ -42,10 +42,6 @@ def json_loads(json_data):
         json_data = json_data.decode(encoding='UTF-8')
     return json.loads(json_data)
 
-def safe_str(value):
-    if not is_py2:
-        value = bytes(value, 'utf-8')
-    return value
 
 class SauceException(Exception):
     def __init__(self, *args, **kwargs):
@@ -124,69 +120,69 @@ class Account(object):
     def get_user(self):
         """Access basic account information."""
         method = 'GET'
-        url = '/rest/v1/users/{}'.format(self.client.sauce_username)
-        return self.client.request(method, url)
+        endpoint = '/rest/v1/users/{}'.format(self.client.sauce_username)
+        return self.client.request(method, endpoint)
 
     def create_user(self, username, password, name, email):
         """Create a sub account."""
         method = 'POST'
-        url = '/rest/v1/users/{}'.format(self.client.sauce_username)
+        endpoint = '/rest/v1/users/{}'.format(self.client.sauce_username)
         body = json.dumps({
             'username': username,
             'password': password,
             'name': name,
             'email': email,
         })
-        return self.client.request(method, url, body)
+        return self.client.request(method, endpoint, body)
 
     def get_concurrency(self):
         """Check account concurrency limits."""
         method = 'GET'
-        url = '/rest/v1.1/users/{}/concurrency'.format(self.client.sauce_username)
-        return self.client.request(method, url)
+        endpoint = '/rest/v1.1/users/{}/concurrency'.format(self.client.sauce_username)
+        return self.client.request(method, endpoint)
 
     def get_subaccounts(self):
         """Get a list of sub accounts associated with a parent account."""
         method = 'GET'
-        url = '/rest/v1/users/{}/list-subaccounts'.format(self.client.sauce_username)
-        return self.client.request(method, url)
+        endpoint = '/rest/v1/users/{}/list-subaccounts'.format(self.client.sauce_username)
+        return self.client.request(method, endpoint)
 
     def get_siblings(self):
         """Get a list of sibling accounts associated with provided account."""
         method = 'GET'
-        url = '/rest/v1.1/users/{}/siblings'.format(self.client.sauce_username)
-        return self.client.request(method, url)
+        endpoint = '/rest/v1.1/users/{}/siblings'.format(self.client.sauce_username)
+        return self.client.request(method, endpoint)
 
     def get_subaccount_info(self):
         """Get information about a sub account."""
         method = 'GET'
-        url = '/rest/v1/users/{}/subaccounts'.format(self.client.sauce_username)
-        return self.client.request(method, url)
+        endpoint = '/rest/v1/users/{}/subaccounts'.format(self.client.sauce_username)
+        return self.client.request(method, endpoint)
 
     def change_access_key(self):
         """Change access key of your account."""
         method = 'POST'
-        url = '/rest/v1/users/{}/accesskey/change'.format(self.client.sauce_username)
-        return self.client.request(method, url)
+        endpoint = '/rest/v1/users/{}/accesskey/change'.format(self.client.sauce_username)
+        return self.client.request(method, endpoint)
 
     def get_activity(self):
         """Check account concurrency limits."""
         method = 'GET'
-        url = '/rest/v1/{}/activity'.format(self.client.sauce_username)
-        return self.client.request(method, url)
+        endpoint = '/rest/v1/{}/activity'.format(self.client.sauce_username)
+        return self.client.request(method, endpoint)
 
     def get_usage(self, start=None, end=None):
         """Access historical account usage data."""
         method = 'GET'
-        url = '/rest/v1/users/{}/usage'.format(self.client.sauce_username)
+        endpoint = '/rest/v1/users/{}/usage'.format(self.client.sauce_username)
         data = {}
         if start:
             data['start'] = start
         if end:
             data['end'] = end
         if data:
-            url = '?'.join([url, urllib.urlencode(data)])
-        return self.client.request(method, url)
+            endpoint = '?'.join([endpoint, urllib.urlencode(data)])
+        return self.client.request(method, endpoint)
 
 
 class Information(object):
@@ -201,20 +197,20 @@ class Information(object):
     def get_status(self):
         """Get the current status of Sauce Labs services."""
         method = 'GET'
-        url = '/rest/v1/info/status'
-        return self.client.request(method, url)
+        endpoint = '/rest/v1/info/status'
+        return self.client.request(method, endpoint)
 
     def get_platforms(self, automation_api='all'):
         """Get a list of objects describing all the OS and browser platforms currently supported on Sauce Labs."""
         method = 'GET'
-        url = '/rest/v1/info/platforms/{}'.format(automation_api)
-        return self.client.request(method, url)
+        endpoint = '/rest/v1/info/platforms/{}'.format(automation_api)
+        return self.client.request(method, endpoint)
 
     def get_appium_eol_dates(self):
         """Get a list of Appium end-of-life dates. Dates are displayed in Unix time."""
         method = 'GET'
-        url = '/rest/v1/info/platforms/appium/eol'
-        return self.client.request(method, url)
+        endpoint = '/rest/v1/info/platforms/appium/eol'
+        return self.client.request(method, endpoint)
 
 
 class JavaScriptTests(object):
@@ -228,7 +224,7 @@ class JavaScriptTests(object):
     def start_js_test(self, platforms, url, framework):
         """Start your JavaScript unit tests on as many browsers as you like with a single request."""
         method = 'POST'
-        url = '/rest/v1/{}/js-tests'.format(self.client.sauce_username)
+        endpoint = '/rest/v1/{}/js-tests'.format(self.client.sauce_username)
         body = json.dumps({
             'platforms': platforms,
             'url': url,
@@ -237,16 +233,16 @@ class JavaScriptTests(object):
         print(method)
         print(url)
         print(body)
-        return self.client.request(method, url, body)
+        return self.client.request(method, endpoint, body)
 
     def get_js_test_status(self, js_tests):
         """Get the status of your JS unit tests."""
         method = 'POST'
-        url = '/rest/v1/{}/js-tests/status'.format(self.client.sauce_username)
+        endpoint = '/rest/v1/{}/js-tests/status'.format(self.client.sauce_username)
         body = json.dumps({
             'js tests': js_tests,
         })
-        return self.client.request(method, url, body)
+        return self.client.request(method, endpoint, body)
 
 class Jobs(object):
     """Job Methods
@@ -260,7 +256,7 @@ class Jobs(object):
                  format=None):
         """List jobs belonging to a specific user."""
         method = 'GET'
-        url = '/rest/v1/{}/jobs'.format(self.client.sauce_username)
+        endpoint = '/rest/v1/{}/jobs'.format(self.client.sauce_username)
         data = {}
         if full is not None:
             data['full'] = full
@@ -275,14 +271,14 @@ class Jobs(object):
         if format is not None:
             data['format'] = format
         if data:
-            url = '?'.join([url, urllib.urlencode(data)])
-        return self.client.request(method, url)
+            endpoint = '?'.join([endpoint, urllib.urlencode(data)])
+        return self.client.request(method, endpoint)
 
     def update_job(self, job_id, build=None, custom_data=None,
                    name=None, passed=None, public=None, tags=None):
         """Edit an existing job."""
         method = 'PUT'
-        url = '/rest/v1/{}/jobs/{}'.format(self.client.sauce_username, job_id)
+        endpoint = '/rest/v1/{}/jobs/{}'.format(self.client.sauce_username, job_id)
         data = {}
         if build is not None:
             data['build'] = build
@@ -297,25 +293,25 @@ class Jobs(object):
         if tags is not None:
             data['tags'] = tags
         body = json.dumps(data)
-        return self.client.request(method, url, body=body)
+        return self.client.request(method, endpoint, body=body)
 
     def delete_job(self, job_id):
         """Removes the job from the system with all the linked assets."""
         method = 'DELETE'
-        url = '/rest/v1/{}/jobs/{}'.format(self.client.sauce_username, job_id)
-        return self.client.request(method, url)
+        endpoint = '/rest/v1/{}/jobs/{}'.format(self.client.sauce_username, job_id)
+        return self.client.request(method, endpoint)
 
     def stop_job(self, job_id):
         """Terminates a running job."""
         method = 'PUT'
-        url = '/rest/v1/{}/jobs/{}/stop'.format(self.client.sauce_username, job_id)
-        return self.client.request(method, url)
+        endpoint = '/rest/v1/{}/jobs/{}/stop'.format(self.client.sauce_username, job_id)
+        return self.client.request(method, endpoint)
 
     def get_job_assets(self, job_id):
         """Get details about the static assets collected for a specific job."""
         method = 'GET'
-        url = '/rest/v1/{}/jobs/{}/assets'.format(self.client.sauce_username, job_id)
-        return self.client.request(method, url)
+        endpoint = '/rest/v1/{}/jobs/{}/assets'.format(self.client.sauce_username, job_id)
+        return self.client.request(method, endpoint)
 
     def get_job_asset_url(self, job_id, filename):
         """Get details about the static assets collected for a specific job."""
@@ -325,14 +321,14 @@ class Jobs(object):
     def download_asset_url(self, job_id, filename, download_path):
         """Get details about the static assets collected for a specific job."""
         method = 'GET'
-        url = self.get_job_asset_url(job_id, filename)
-        self.client.download(url, download_path)
+        endpoint = self.get_job_asset_url(job_id, filename)
+        self.client.download(endpoint, download_path)
 
     def delete_job_assets(self, job_id):
         """Delete all the assets captured during a test run."""
         method = 'DELETE'
-        url = '/rest/v1/{}/jobs/{}/assets'.format(self.client.sauce_username, job_id)
-        return self.client.request(method, url)
+        endpoint = '/rest/v1/{}/jobs/{}/assets'.format(self.client.sauce_username, job_id)
+        return self.client.request(method, endpoint)
 
     def get_auth_token(self, job_id, date_range=None):
         """Get an auth token to access protected job resources.
@@ -343,7 +339,8 @@ class Jobs(object):
         if date_range:
             key = '{}:{}'.format(key, date_range)
         return {
-            'token': hmac.new(safe_str(key), safe_str(job_id), md5).hexdigest()
+            'token': hmac.new(key.encode('utf-8'), job_id.encode('utf-8'),
+                            md5).hexdigest()
         }
 
 class Storage(object):
@@ -358,15 +355,15 @@ class Storage(object):
         """Uploads a file to the temporary sauce storage."""
         method = 'POST'
         filename = os.path.split(filepath)
-        url = '/rest/v1/storage/{}/{}'.format(self.client.sauce_username, filename)
+        endpoint = '/rest/v1/storage/{}/{}'.format(self.client.sauce_username, filename)
         body = file(filepath, "rb")
-        return self.client.request(method, url, body, content_type='application/octet-stream')
+        return self.client.request(method, endpoint, body, content_type='application/octet-stream')
 
     def get_stored_files(self):
         """Check which files are in your temporary storage."""
         method = 'GET'
-        url = '/rest/v1/storage/{}'.format(self.client.sauce_username)
-        return self.client.request(method, url)
+        endpoint = '/rest/v1/storage/{}'.format(self.client.sauce_username)
+        return self.client.request(method, endpoint)
 
 
 class Tunnels(object):
@@ -380,17 +377,17 @@ class Tunnels(object):
     def get_tunnels(self):
         """Retrieves all running tunnels for a specific user."""
         method = 'GET'
-        url = '/rest/v1/{}/tunnels'.format(self.client.sauce_username)
-        return self.client.request(method, url)
+        endpoint = '/rest/v1/{}/tunnels'.format(self.client.sauce_username)
+        return self.client.request(method, endpoint)
 
     def get_tunnel(self, tunnel_id):
         """Get information for a tunnel given its ID."""
         method = 'GET'
-        url = '/rest/v1/{}/tunnels/{}'.format(self.client.sauce_username, tunnel_id)
-        return self.client.request(method, url)
+        endpoint = '/rest/v1/{}/tunnels/{}'.format(self.client.sauce_username, tunnel_id)
+        return self.client.request(method, endpoint)
 
     def delete_tunnel(self, tunnel_id):
         """Get information for a tunnel given its ID."""
         method = 'DELETE'
-        url = '/rest/v1/{}/tunnels/{}'.format(self.client.sauce_username, tunnel_id)
-        return self.client.request(method, url)
+        endpoint = '/rest/v1/{}/tunnels/{}'.format(self.client.sauce_username, tunnel_id)
+        return self.client.request(method, endpoint)
