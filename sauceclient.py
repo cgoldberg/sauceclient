@@ -22,18 +22,18 @@ import base64
 import hmac
 import json
 import os
-import urllib
 from hashlib import md5
 
 __version__ = '0.3dev'
 
-PY2 = False
-
 try:
+    PY2 = False
     import http.client as http_client
+    from urllib.parse import urlencode
 except ImportError as err:
     PY2 = True
     import http.client as http_client
+    from urllib import urlencode
 
 
 def json_loads(json_data):
@@ -179,7 +179,7 @@ class Account(object):
         if end:
             data['end'] = end
         if data:
-            endpoint = '?'.join([endpoint, urllib.urlencode(data)])
+            endpoint = '?'.join([endpoint, urlencode(data)])
         return self.client.request(method, endpoint)
 
 
@@ -269,7 +269,7 @@ class Jobs(object):
         if output_format is not None:
             data['format'] = output_format
         if data:
-            endpoint = '?'.join([endpoint, urllib.urlencode(data)])
+            endpoint = '?'.join([endpoint, urlencode(data)])
         return self.client.request(method, endpoint)
 
     def update_job(self, job_id, build=None, custom_data=None,
@@ -361,7 +361,7 @@ class Storage(object):
         filename = os.path.split(filepath)
         endpoint = '/rest/v1/storage/{}/{}'.format(
             self.client.sauce_username, filename)
-        body = file(filepath, "rb")
+        body = open(filepath, "rb")
         return self.client.request(method, endpoint, body,
                                    content_type='application/octet-stream')
 
