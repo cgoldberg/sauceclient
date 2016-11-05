@@ -8,7 +8,7 @@ python:
 
 # Tell it the things it will need to install when it boots
 install:
-  # This is a dependency of our Django test script
+  # This is a dependency of ourtest script
   - pip install coverage coveralls mock
 
   # Install the dependencies the app itself has
