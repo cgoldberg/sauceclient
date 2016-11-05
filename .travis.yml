@@ -3,9 +3,9 @@ language: python
 
 # List the versions of Python you'd like to test against
 python:
-  - "2.6"
+#  - "2.6"
   - "2.7"
-  - "3.2"
+#  - "3.2"
   - "3.3"
   - "3.4"
   - "3.5"
