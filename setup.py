@@ -31,6 +31,7 @@ setup(
     name='sauceclient',
     version=__version__,
     py_modules=['sauceclient'],
+    install_requires = ['requests>=2.11.0', 'six>=1.10.0', ],
     author='Corey Goldberg',
     author_email='cgoldberg _at_ gmail.com',
     description='Python client library for Sauce Labs API.',

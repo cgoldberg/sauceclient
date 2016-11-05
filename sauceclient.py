@@ -24,33 +24,24 @@ import json
 import os
 from hashlib import md5
 
+import requests
+import six
+from six.moves.urllib.parse import urlencode
+
 __version__ = '0.3dev'
-
-try:
-    PY2 = False
-    import http.client as http_client
-    from urllib.parse import urlencode
-except ImportError as err:
-    PY2 = True
-    import http.client as http_client
-    from urllib import urlencode
-
-
-def json_loads(json_data):
-    """Load json string for appropriate Python version."""
-    if not PY2:
-        json_data = json_data.decode(encoding='UTF-8')
-    return json.loads(json_data)
 
 
 class SauceException(Exception):
     """SauceClient exception."""
+
     def __init__(self, *args, **kwargs):
+        """Initialize class."""
         super(SauceException, self).__init__(*args)
         self.response = kwargs.get('response')
 
 class SauceClient(object):
     """SauceClient class."""
+    apibase = 'https://saucelabs.com'
 
     def __init__(self, sauce_username=None, sauce_access_key=None):
         """Initialize class."""
@@ -63,45 +54,37 @@ class SauceClient(object):
         self.jobs = Jobs(self)
         self.storage = Storage(self)
         self.tunnels = Tunnels(self)
-        #self.provisioning = Accounts(self)
-        #self.usage = Usage(self)
 
-    def make_headers(self):
-        """Create http headers for request."""
-        base64string = self.get_encoded_auth_string()
-        headers = {
-            'Authorization': 'Basic {}'.format(base64string),
-            'Content-Type': 'application/json',
-        }
-        return headers
-
-    def request(self, method, url, body=None, content_type=None):
-        """Send http request."""
-        headers = self.headers
-        if content_type:
-            headers['Content-Type'] = content_type
-        connection = http_client.HTTPSConnection('saucelabs.com')
-        connection.request(method, url, body, headers=headers)
-        response = connection.getresponse()
-        json_data = json_loads(response.read())
-        connection.close()
-        if response.status not in [200, 201]:
-            raise SauceException('{}: {}.\nSauce Status NOT OK'.format(
-                response.status, response.reason), response=response)
-        return json_data
-
-    def download(self, url, filepath):
-        """Download a file."""
-        pass
-
-    def get_encoded_auth_string(self):
+    def get_auth_string(self):
         """Create auth string from credentials."""
         auth_info = '{}:{}'.format(self.sauce_username, self.sauce_access_key)
-        if PY2:
-            auth = base64.encodestring(auth_info)[:-1]
-        else:
-            auth = base64.b64encode(auth_info.encode('utf-8')).decode('utf-8')
-        return auth
+        return base64.b64encode(auth_info.encode('utf-8')).decode('utf-8')
+
+    def make_headers(self, content_type='application/json'):
+        """Create content-type header."""
+        return {
+            'Content-Type': content_type,
+        }
+
+    def make_auth_headers(self, content_type):
+        """Add authorization header."""
+        headers = self.make_headers(content_type)
+        headers['Authorization'] = 'Basic {}'.format(self.get_auth_string())
+        return headers
+
+    def request(self, method, url, body=None, content_type='application/json'):
+        """Send http request."""
+        headers = self.make_auth_headers(content_type)
+        url = '{}{}'.format(self.apibase, url)
+        response = requests.request(method, url, data=body, headers=headers)
+        if not response.ok:
+            raise SauceException('{}:\nSauce Status NOT OK'.format(
+                response.status_code), response=response)
+        return response.json()
+
+    #def download(self, url, filepath):
+    #    """Download a file."""
+    #    pass
 
 
 class Account(object):
@@ -222,7 +205,7 @@ class JavaScriptTests(object):
     def __init__(self, client):
         self.client = client
 
-    def start_js_test(self, platforms, url, framework):
+    def js_tests(self, platforms, url, framework):
         """Start your JavaScript unit tests on as many browsers as you like
         with a single request."""
         method = 'POST'
@@ -231,7 +214,7 @@ class JavaScriptTests(object):
                            'framework': framework, })
         return self.client.request(method, endpoint, body)
 
-    def get_js_test_status(self, js_tests):
+    def js_tests_status(self, js_tests):
         """Get the status of your JS unit tests."""
         method = 'POST'
         endpoint = '/rest/v1/{}/js-tests/status'.format(
@@ -297,8 +280,8 @@ class Jobs(object):
     def delete_job(self, job_id):
         """Removes the job from the system with all the linked assets."""
         method = 'DELETE'
-        endpoint = '/rest/v1/{}/jobs/{}'.format(
-            self.client.sauce_username, job_id)
+        endpoint = '/rest/v1/{}/jobs/{}'.format(self.client.sauce_username,
+                                                job_id)
         return self.client.request(method, endpoint)
 
     def stop_job(self, job_id):
@@ -320,10 +303,10 @@ class Jobs(object):
         return 'https://saucelabs.com/rest/v1/{}/jobs/{}/assets/{}'.format(
             self.client.sauce_username, job_id, filename)
 
-    def download_asset_url(self, job_id, filename, download_path):
-        """Get details about the static assets collected for a specific job."""
-        endpoint = self.get_job_asset_url(job_id, filename)
-        self.client.download(endpoint, download_path)
+    #def download_asset(self, job_id, filename, download_path):
+    #    """Get details about the static assets collected for a specific job."""
+    #    endpoint = self.get_job_asset_url(job_id, filename)
+    #    self.client.download(endpoint, download_path)
 
     def delete_job_assets(self, job_id):
         """Delete all the assets captured during a test run."""
@@ -341,10 +324,8 @@ class Jobs(object):
                              self.client.sauce_access_key)
         if date_range:
             key = '{}:{}'.format(key, date_range)
-        return {
-            'token': hmac.new(key.encode('utf-8'),
-                              job_id.encode('utf-8'), md5).hexdigest()
-        }
+        return hmac.new(key.encode('utf-8'), job_id.encode('utf-8'),
+                        md5).hexdigest()
 
 class Storage(object):
     """Temporary Storage Methods
@@ -361,7 +342,8 @@ class Storage(object):
         filename = os.path.split(filepath)
         endpoint = '/rest/v1/storage/{}/{}'.format(
             self.client.sauce_username, filename)
-        body = open(filepath, "rb")
+        with open(filepath, 'rb') as filehandle:
+            body = filehandle.read()
         return self.client.request(method, endpoint, body,
                                    content_type='application/octet-stream')
 
