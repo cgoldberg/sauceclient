@@ -15,9 +15,6 @@ install:
   # This is a dependency of ourtest script
   - pip install coverage coveralls mock
 
-  # Install the dependencies the app itself has
-  - pip install requests six
-
 # Tell Travis how to run the test script itself
 script:
   coverage run --source=sauceclient tests.py
