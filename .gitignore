@@ -1,5 +1,9 @@
 *.py[cod]
+__pycache__
 dist
 build
 html_docs
 .idea
+.cache
+.coverage
+*,cover
