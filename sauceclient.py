@@ -24,9 +24,13 @@ import json
 import os
 from hashlib import md5
 
-import requests
-import six
-from six.moves.urllib.parse import urlencode
+try:
+    import http.client as http_client
+    from urllib.parse import urlencode
+except ImportError:
+    import httplib as http_client
+    from urllib import urlencode
+
 
 __version__ = '0.3dev'
 
@@ -38,6 +42,7 @@ class SauceException(Exception):
         """Initialize class."""
         super(SauceException, self).__init__(*args)
         self.response = kwargs.get('response')
+
 
 class SauceClient(object):
     """SauceClient class."""
@@ -75,16 +80,15 @@ class SauceClient(object):
     def request(self, method, url, body=None, content_type='application/json'):
         """Send http request."""
         headers = self.make_auth_headers(content_type)
-        url = '{}{}'.format(self.apibase, url)
-        response = requests.request(method, url, data=body, headers=headers)
-        if not response.ok:
-            raise SauceException('{}:\nSauce Status NOT OK'.format(
-                response.status_code), response=response)
-        return response.json()
-
-    #def download(self, url, filepath):
-    #    """Download a file."""
-    #    pass
+        connection = http_client.HTTPSConnection('saucelabs.com')
+        connection.request(method, url, body, headers=headers)
+        response = connection.getresponse()
+        data = response.read()
+        connection.close()
+        if response.status not in [200, 201]:
+            raise SauceException('{}: {}.\nSauce Status NOT OK'.format(
+                response.status, response.reason), response=response)
+        return json.loads(data.decode('utf-8'))
 
 
 class Account(object):
@@ -224,6 +228,7 @@ class JavaScriptTests(object):
         })
         return self.client.request(method, endpoint, body)
 
+
 class Jobs(object):
     """Job Methods
 
@@ -303,11 +308,6 @@ class Jobs(object):
         return 'https://saucelabs.com/rest/v1/{}/jobs/{}/assets/{}'.format(
             self.client.sauce_username, job_id, filename)
 
-    #def download_asset(self, job_id, filename, download_path):
-    #    """Get details about the static assets collected for a specific job."""
-    #    endpoint = self.get_job_asset_url(job_id, filename)
-    #    self.client.download(endpoint, download_path)
-
     def delete_job_assets(self, job_id):
         """Delete all the assets captured during a test run."""
         method = 'DELETE'
@@ -326,6 +326,7 @@ class Jobs(object):
             key = '{}:{}'.format(key, date_range)
         return hmac.new(key.encode('utf-8'), job_id.encode('utf-8'),
                         md5).hexdigest()
+
 
 class Storage(object):
     """Temporary Storage Methods
