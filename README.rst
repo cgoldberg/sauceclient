@@ -10,14 +10,15 @@ About sauceclient
 `sauceclient` is a Python client library, used for accessing the Sauce Labs
 API to retrieve and update information about resources such as:
 
+ * Account
  * Information
- * Jobs
- * Provisioning
- * Usage
- * Assets (Logs, Videos, Screenshots)
+ * JavaScript Unit Tests
+ * Jobs & Assets (Logs, Videos, Screenshots)
+ * Temporary Storage
+ * Tunnels
 
-`sauceclient` is *not* used for running your tests on Sauce Labs'
-service.  (That is done via `Selenium WebDriver`_).
+`sauceclient` is *not* used for running your tests on Sauce Labs' service.
+(That is done via `Selenium WebDriver`_).
 
 .. _Selenium WebDriver: selenium_on_sauce.html
 
@@ -32,7 +33,7 @@ About Sauce Labs
 ================
 
 `Sauce Labs <https://saucelabs.com>`_ is a service that allows you to run
-remote Selenium WebDriver tests from their cloud. They have VM's with 100+
+remote Selenium WebDriver tests from their cloud. They have VM's with 800+
 browser/OS combinations, allowing comprehensive cross-browser cross-platform
 test coverage.
 
@@ -54,7 +55,13 @@ Example sauceclient Usage
         'sauce-username',
         'sauce-access-key',
     )
-    job_ids = sc.jobs.get_job_ids()
+    jobs = sc.jobs.get_jobs(full=True, limit=5)
+
+Compatibility Note
+==================
+
+Please note that due to changes in the SauceLabs REST API, some of sauceclient's
+classes and methods have been removed or renamed since the previous release.
 
 Related Links
 =============
