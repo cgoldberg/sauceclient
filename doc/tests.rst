@@ -1,4 +1,4 @@
-test_sauceclient Module
+tests Module
 =======================
 
 .. automodule:: tests
