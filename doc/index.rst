@@ -4,6 +4,9 @@ sauceclient Python package
 
 **Python client library for Sauce Labs API.**
 
+.. image:: https://travis-ci.org/cgoldberg/sauceclient.svg?branch=master
+    :target: https://travis-ci.org/cgoldberg/sauceclient
+
 About sauceclient
 =================
 
