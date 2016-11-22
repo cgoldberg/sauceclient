@@ -9,4 +9,4 @@ install:
   - pip install mock
 
 script:
-  python3 -m unittest discover
+  python -m unittest discover
