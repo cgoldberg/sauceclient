@@ -7,6 +7,7 @@ python:
 
 install:
   - pip install mock
+  - pip install tox-travis
 
 script:
-  python -m unittest discover
+  tox
