@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Sauce Labs REST API client
 
-#   Copyright (c) 2013 Corey Goldberg
+#   Copyright (c) 2013-2016 Corey Goldberg
 #
 #   This file is part of: sauceclient
 #   https://github.com/cgoldberg/sauceclient
@@ -32,7 +32,7 @@ except ImportError:
     from urllib import urlencode
 
 
-__version__ = '0.3dev'
+__version__ = '1.0dev'
 
 
 class SauceException(Exception):
