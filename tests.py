@@ -1,12 +1,11 @@
-import json
 import unittest
 
 import sauceclient
 
 try:
-    from unittest.mock import MagicMock, patch
+    from unittest.mock import patch
 except ImportError:
-    from mock import MagicMock, patch
+    from mock import patch
 
 
 @patch('sauceclient.http_client.HTTPSConnection.getresponse')
@@ -134,8 +133,10 @@ class TestSauce(unittest.TestCase):
         mocked.return_value.reason = 'OK'
         mocked.return_value.read.return_value = b'{}'
 
-        resp = self.sc.javascript.js_tests(['OS X 10.11', 'chrome', ''],
-                                            'http://example.com/', 'jasmine')
+        resp = self.sc.javascript.js_tests(
+                                            ['OS X 10.11', 'chrome', ''],
+                                            'http://example.com/',
+                                            'jasmine')
         self.assertIsInstance(resp, dict)
 
     def test_javascript_js_tests_status(self, mocked):
@@ -155,8 +156,8 @@ class TestSauce(unittest.TestCase):
         self.assertIsInstance(resp, list)
 
         resp = self.sc.jobs.get_jobs(full=True, limit=1, skip=1,
-                                         start=214891200, end=214975439,
-                                         output_format='json')
+                                     start=214891200, end=214975439,
+                                     output_format='json')
         self.assertIsInstance(resp, list)
 
     def test_jobs_update_job(self, mocked):
