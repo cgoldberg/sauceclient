@@ -13,7 +13,7 @@ About sauceclient
 *sauceclient* is a Python client library for the Sauce Labs
 API.
 
-Management Options:
+It gives you access to Sauce Labs:
 
  * Account
  * Platform Information
@@ -22,7 +22,7 @@ Management Options:
  * Temporary Storage
  * Tunnels
 
-*sauceclient* is *not* used for running your tests on Sauce Labs' service.
+*sauceclient* is not used for *running* tests on Sauce Labs' service.
 (That is done via `Selenium WebDriver`_).
 
 .. _Selenium WebDriver: selenium_on_sauce.html

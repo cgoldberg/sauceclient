@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Sauce Labs REST API client
 
-#   Copyright (c) 2013-2016 Corey Goldberg
+#   Copyright (c) 2013-2017 Corey Goldberg
 #
 #   This file is part of: sauceclient
 #   https://github.com/cgoldberg/sauceclient
