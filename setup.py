@@ -15,16 +15,15 @@
 
 """setup/install script for sauceclient."""
 
-
 import os
 from distutils.core import setup
+
+from sauceclient import __version__
+
 
 this_dir = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(this_dir, 'README.rst')) as f:
     LONG_DESCRIPTION = '\n' + f.read()
-
-
-from sauceclient import __version__
 
 
 setup(

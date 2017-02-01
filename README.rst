@@ -10,17 +10,19 @@ sauceclient Python package
 About sauceclient
 =================
 
-`sauceclient` is a Python client library, used for accessing the Sauce Labs
-API to retrieve and update information about resources such as:
+*sauceclient* is a Python client library for the Sauce Labs
+API.
+
+Management Options:
 
  * Account
- * Information
+ * Platform Information
  * JavaScript Unit Tests
  * Jobs & Assets (Logs, Videos, Screenshots)
  * Temporary Storage
  * Tunnels
 
-`sauceclient` is *not* used for running your tests on Sauce Labs' service.
+*sauceclient* is *not* used for running your tests on Sauce Labs' service.
 (That is done via `Selenium WebDriver`_).
 
 .. _Selenium WebDriver: selenium_on_sauce.html
@@ -35,13 +37,12 @@ Install
 About Sauce Labs
 ================
 
-`Sauce Labs <https://saucelabs.com>`_ is a service that allows you to run
-remote Selenium WebDriver tests from their cloud. They have VM's with 800+
-browser/OS combinations, allowing comprehensive cross-browser cross-platform
-test coverage.
+`Sauce Labs <https://saucelabs.com>`_ is a service for running remote Selenium
+WebDriver tests. They have VM's with 800+ browser/OS combinations, allowing
+comprehensive cross-browser cross-platform test coverage.
 
-Example sauceclient Usage
-=========================
+Example Usage
+=============
 
  * public access::
 
@@ -63,8 +64,8 @@ Example sauceclient Usage
 Compatibility Note
 ==================
 
-Please note that due to changes in the SauceLabs REST API, some of sauceclient's
-classes and methods have been removed or renamed since the previous release.
+Due to changes in the SauceLabs REST API, some of sauceclient's
+classes and methods have been removed or renamed since the pre-1.0 releases.
 
 Related Links
 =============

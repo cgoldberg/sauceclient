@@ -173,7 +173,8 @@ class Account(object):
 class Information(object):
     """Information Methods
 
-    Information resources are publicly available data about Sauce Lab's service.
+    Information resources are publicly available data about
+    Sauce Lab's service.
     - https://wiki.saucelabs.com/display/DOCS/Information+Methods
     """
     def __init__(self, client):
