@@ -261,6 +261,13 @@ class Jobs(object):
             endpoint = '?'.join([endpoint, urlencode(data)])
         return self.client.request(method, endpoint)
 
+    def get_job(self, job_id):
+        """Retreive a single job."""
+        method = 'GET'
+        endpoint = '/rest/v1/{}/jobs/{}'.format(self.client.sauce_username,
+                                                job_id)
+        return self.client.request(method, endpoint)
+
     def update_job(self, job_id, build=None, custom_data=None,
                    name=None, passed=None, public=None, tags=None):
         """Edit an existing job."""

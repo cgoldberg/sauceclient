@@ -160,6 +160,14 @@ class TestSauce(unittest.TestCase):
                                      output_format='json')
         self.assertIsInstance(resp, list)
 
+    def test_jobs_get_job(self, mocked):
+        mocked.return_value.status = 200
+        mocked.return_value.reason = 'OK'
+        mocked.return_value.read.return_value = b'{}'
+
+        resp = self.sc.jobs.get_job('job-id')
+        self.assertIsInstance(resp, dict)
+
     def test_jobs_update_job(self, mocked):
         mocked.return_value.status = 200
         mocked.return_value.reason = 'OK'
