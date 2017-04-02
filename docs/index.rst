@@ -101,10 +101,3 @@ Running Selenium WebDriver
     :maxdepth: 4
 
     selenium_on_sauce
-
-Related Links
-=============
-
-* `Sauce Labs <https://saucelabs.com>`_
-* `Sauce Labs REST API documentation <http://saucelabs.com/docs/rest>`_
-* `Python bindings for Selenium WebDriver <http://pypi.python.org/pypi/selenium>`_
