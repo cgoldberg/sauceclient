@@ -1,57 +1,47 @@
-===========
-sauceclient
-===========
+==========================
+sauceclient Python package
+==========================
 
 **Python client library for Sauce Labs API.**
 
 .. image:: https://travis-ci.org/cgoldberg/sauceclient.svg?branch=master
     :target: https://travis-ci.org/cgoldberg/sauceclient
 
-Info
-=====
-
- * Author: `Corey Goldberg <https://github.com/cgoldberg>`_ - 2013-2017
- * Docs: https://cgoldberg.github.io/sauceclient/
- * Releases: https://pypi.python.org/pypi/sauceclient
- * Dev: https://github.com/cgoldberg/sauceclient
- * License: Apache v2.0
-
 About sauceclient
 =================
 
-*sauceclient* is a Python client library for Sauce Labs API.  You can manage
-a Selenium test environment and retrieve test assets from Sauce.
+`sauceclient` is a Python client library, used for accessing the Sauce Labs
+API to retrieve and update information about resources such as:
 
-The API gives remote access to:
-
- * Test Jobs & Assets (Results, Logs, Videos, Screenshots)
  * Account
- * Platform Information
+ * Information
  * JavaScript Unit Tests
+ * Jobs & Assets (Logs, Videos, Screenshots)
  * Temporary Storage
  * Tunnels
 
-Note: *sauceclient* is not used for running tests on Sauce Labs' services.
-Test execution is handled by `Selenium WebDriver`_.
+`sauceclient` is *not* used for running your tests on Sauce Labs' service.
+(That is done via `Selenium WebDriver`_).
 
 .. _Selenium WebDriver: selenium_on_sauce.html
-
-About Sauce Labs
-================
-
-`Sauce Labs <https://saucelabs.com>`_ is a service for running remote Selenium
-WebDriver tests. It ghas VM's with 800+ browser/OS combinations, allowing
-comprehensive cross-browser cross-platform test coverage.
 
 Install
 =======
 
- * with `pip`::
+ * sauceclient requires Python 2.7 or Python 3.3+
 
-      pip install sauceclient
+ * `$ pip install sauceclient`
 
-Example Usage
-=============
+About Sauce Labs
+================
+
+`Sauce Labs <https://saucelabs.com>`_ is a service that allows you to run
+remote Selenium WebDriver tests from their cloud. They have VM's with 800+
+browser/OS combinations, allowing comprehensive cross-browser cross-platform
+test coverage.
+
+Example sauceclient Usage
+=========================
 
  * public access::
 
@@ -70,20 +60,11 @@ Example Usage
     )
     jobs = sc.jobs.get_jobs(full=True, limit=5)
 
-Related Links
-=============
-
-* `Sauce Labs <https://saucelabs.com>`_
-* `Sauce Labs REST API documentation <http://saucelabs.com/docs/rest>`_
-* `Python bindings for Selenium WebDriver <http://pypi.python.org/pypi/selenium>`_
-
 Compatibility Note
 ==================
 
-Due to changes in the SauceLabs REST API, some of sauceclient's
-classes and methods have been changed or renamed since the pre-1.0 releases.
-
-----
+Please note that due to changes in the SauceLabs REST API, some of sauceclient's
+classes and methods have been removed or renamed since the previous release.
 
 Python Module Reference
 =======================
@@ -105,6 +86,6 @@ Running Selenium WebDriver
 Related Links
 =============
 
- * `Sauce Labs <https://saucelabs.com>`_
- * `Sauce Labs REST API documentation <http://saucelabs.com/docs/rest>`_
- * `Python bindings for Selenium WebDriver <http://pypi.python.org/pypi/selenium>`_
+* `Sauce Labs <https://saucelabs.com>`_
+* `Sauce Labs REST API documentation <http://saucelabs.com/docs/rest>`_
+* `Python bindings for Selenium WebDriver <http://pypi.python.org/pypi/selenium>`_

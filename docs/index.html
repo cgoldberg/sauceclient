@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sauceclient &mdash; sauceclient library - Python documentation</title>
+  <title>sauceclient Python package &mdash; sauceclient library - Python documentation</title>
   
 
   
@@ -137,7 +137,7 @@
     
       <li><a href="#">Docs</a> &raquo;</li>
         
-      <li>sauceclient</li>
+      <li>sauceclient Python package</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -154,60 +154,45 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="sauceclient">
-<h1>sauceclient<a class="headerlink" href="#sauceclient" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="sauceclient-python-package">
+<h1>sauceclient Python package<a class="headerlink" href="#sauceclient-python-package" title="Permalink to this headline">¶</a></h1>
 <p><strong>Python client library for Sauce Labs API.</strong></p>
 <a class="reference external image-reference" href="https://travis-ci.org/cgoldberg/sauceclient"><img alt="https://travis-ci.org/cgoldberg/sauceclient.svg?branch=master" src="https://travis-ci.org/cgoldberg/sauceclient.svg?branch=master" /></a>
-<div class="section" id="info">
-<h2>Info<a class="headerlink" href="#info" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><ul class="simple">
-<li>Author: <a class="reference external" href="https://github.com/cgoldberg">Corey Goldberg</a> - 2013-2017</li>
-<li>Docs: <a class="reference external" href="https://cgoldberg.github.io/sauceclient/">https://cgoldberg.github.io/sauceclient/</a></li>
-<li>Releases: <a class="reference external" href="https://pypi.python.org/pypi/sauceclient">https://pypi.python.org/pypi/sauceclient</a></li>
-<li>Dev: <a class="reference external" href="https://github.com/cgoldberg/sauceclient">https://github.com/cgoldberg/sauceclient</a></li>
-<li>License: Apache v2.0</li>
-</ul>
-</div></blockquote>
-</div>
 <div class="section" id="about-sauceclient">
 <h2>About sauceclient<a class="headerlink" href="#about-sauceclient" title="Permalink to this headline">¶</a></h2>
-<p><em>sauceclient</em> is a Python client library for Sauce Labs API.  You can manage
-a Selenium test environment and retrieve test assets from Sauce.</p>
-<p>The API gives remote access to:</p>
+<p><cite>sauceclient</cite> is a Python client library, used for accessing the Sauce Labs
+API to retrieve and update information about resources such as:</p>
 <blockquote>
 <div><ul class="simple">
-<li>Test Jobs &amp; Assets (Results, Logs, Videos, Screenshots)</li>
 <li>Account</li>
-<li>Platform Information</li>
+<li>Information</li>
 <li>JavaScript Unit Tests</li>
+<li>Jobs &amp; Assets (Logs, Videos, Screenshots)</li>
 <li>Temporary Storage</li>
 <li>Tunnels</li>
 </ul>
 </div></blockquote>
-<p>Note: <em>sauceclient</em> is not used for running tests on Sauce Labs&#8217; services.
-Test execution is handled by <a class="reference external" href="selenium_on_sauce.html">Selenium WebDriver</a>.</p>
-</div>
-<div class="section" id="about-sauce-labs">
-<h2>About Sauce Labs<a class="headerlink" href="#about-sauce-labs" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://saucelabs.com">Sauce Labs</a> is a service for running remote Selenium
-WebDriver tests. It ghas VM&#8217;s with 800+ browser/OS combinations, allowing
-comprehensive cross-browser cross-platform test coverage.</p>
+<p><cite>sauceclient</cite> is <em>not</em> used for running your tests on Sauce Labs&#8217; service.
+(That is done via <a class="reference external" href="selenium_on_sauce.html">Selenium WebDriver</a>).</p>
 </div>
 <div class="section" id="install">
 <h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<div><ul>
-<li><p class="first">with <cite>pip</cite>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">sauceclient</span>
-</pre></div>
-</div>
-</li>
+<div><ul class="simple">
+<li>sauceclient requires Python 2.7 or Python 3.3+</li>
+<li><cite>$ pip install sauceclient</cite></li>
 </ul>
 </div></blockquote>
 </div>
-<div class="section" id="example-usage">
-<h2>Example Usage<a class="headerlink" href="#example-usage" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="about-sauce-labs">
+<h2>About Sauce Labs<a class="headerlink" href="#about-sauce-labs" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://saucelabs.com">Sauce Labs</a> is a service that allows you to run
+remote Selenium WebDriver tests from their cloud. They have VM&#8217;s with 800+
+browser/OS combinations, allowing comprehensive cross-browser cross-platform
+test coverage.</p>
+</div>
+<div class="section" id="example-sauceclient-usage">
+<h2>Example sauceclient Usage<a class="headerlink" href="#example-sauceclient-usage" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul>
 <li><p class="first">public access:</p>
@@ -232,20 +217,11 @@ comprehensive cross-browser cross-platform test coverage.</p>
 </ul>
 </div></blockquote>
 </div>
-<div class="section" id="related-links">
-<h2>Related Links<a class="headerlink" href="#related-links" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><a class="reference external" href="https://saucelabs.com">Sauce Labs</a></li>
-<li><a class="reference external" href="http://saucelabs.com/docs/rest">Sauce Labs REST API documentation</a></li>
-<li><a class="reference external" href="http://pypi.python.org/pypi/selenium">Python bindings for Selenium WebDriver</a></li>
-</ul>
-</div>
 <div class="section" id="compatibility-note">
 <h2>Compatibility Note<a class="headerlink" href="#compatibility-note" title="Permalink to this headline">¶</a></h2>
-<p>Due to changes in the SauceLabs REST API, some of sauceclient&#8217;s
-classes and methods have been changed or renamed since the pre-1.0 releases.</p>
+<p>Please note that due to changes in the SauceLabs REST API, some of sauceclient&#8217;s
+classes and methods have been removed or renamed since the previous release.</p>
 </div>
-<hr class="docutils" />
 <div class="section" id="python-module-reference">
 <h2>Python Module Reference<a class="headerlink" href="#python-module-reference" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
@@ -270,15 +246,13 @@ classes and methods have been changed or renamed since the pre-1.0 releases.</p>
 </ul>
 </div>
 </div>
-<div class="section" id="id2">
-<h2>Related Links<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><ul class="simple">
+<div class="section" id="related-links">
+<h2>Related Links<a class="headerlink" href="#related-links" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
 <li><a class="reference external" href="https://saucelabs.com">Sauce Labs</a></li>
 <li><a class="reference external" href="http://saucelabs.com/docs/rest">Sauce Labs REST API documentation</a></li>
 <li><a class="reference external" href="http://pypi.python.org/pypi/selenium">Python bindings for Selenium WebDriver</a></li>
 </ul>
-</div></blockquote>
 </div>
 </div>
 
