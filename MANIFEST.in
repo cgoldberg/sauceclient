@@ -3,3 +3,4 @@ include README.rst
 include setup.py
 include sauceclient.py
 include tests.py
+include tox.ini
