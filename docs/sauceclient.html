@@ -1,0 +1,515 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sauceclient Module &mdash; sauceclient library - Python documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="sauceclient library - Python documentation" href="index.html"/>
+        <link rel="next" title="tests Module" href="tests.html"/>
+        <link rel="prev" title="sauceclient" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> sauceclient
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0dev
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">sauceclient Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">tests Module</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="selenium_on_sauce.html">Selenium WebDriver in Python (local and remote)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">sauceclient</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>sauceclient Module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-sauceclient">
+<span id="sauceclient-module"></span><h1>sauceclient Module<a class="headerlink" href="#module-sauceclient" title="Permalink to this headline">¶</a></h1>
+<p>Sauce Labs REST API client</p>
+<p>#   Copyright (c) 2013-2017 Corey Goldberg
+#
+#   This file is part of: sauceclient
+#   <a class="reference external" href="https://github.com/cgoldberg/sauceclient">https://github.com/cgoldberg/sauceclient</a>
+#
+#   Licensed under the Apache License, Version 2.0 (the &#8220;License&#8221;);
+#   you may not use this file except in compliance with the License.
+#   You may obtain a copy of the License at
+#
+#       <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>
+#
+#   &#8212;&#8212;&#8212;&#8212;&#8212;-
+#
+#   Sauce Labs REST API documentation:
+#     <a class="reference external" href="http://saucelabs.com/docs/rest">http://saucelabs.com/docs/rest</a></p>
+<dl class="class">
+<dt id="sauceclient.Account">
+<em class="property">class </em><code class="descclassname">sauceclient.</code><code class="descname">Account</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Account"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Account" title="Permalink to this definition">¶</a></dt>
+<dd><p>Account Methods</p>
+<p>These methods provide user account information and management.
+- <a class="reference external" href="https://wiki.saucelabs.com/display/DOCS/Account+Methods">https://wiki.saucelabs.com/display/DOCS/Account+Methods</a></p>
+<dl class="method">
+<dt id="sauceclient.Account.change_access_key">
+<code class="descname">change_access_key</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Account.change_access_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Account.change_access_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change access key of your account.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.Account.create_user">
+<code class="descname">create_user</code><span class="sig-paren">(</span><em>username</em>, <em>password</em>, <em>name</em>, <em>email</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Account.create_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Account.create_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a sub account.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.Account.get_activity">
+<code class="descname">get_activity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Account.get_activity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Account.get_activity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check account concurrency limits.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.Account.get_concurrency">
+<code class="descname">get_concurrency</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Account.get_concurrency"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Account.get_concurrency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check account concurrency limits.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.Account.get_siblings">
+<code class="descname">get_siblings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Account.get_siblings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Account.get_siblings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of sibling accounts associated with provided account.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.Account.get_subaccount_info">
+<code class="descname">get_subaccount_info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Account.get_subaccount_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Account.get_subaccount_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get information about a sub account.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.Account.get_subaccounts">
+<code class="descname">get_subaccounts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Account.get_subaccounts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Account.get_subaccounts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of sub accounts associated with a parent account.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.Account.get_usage">
+<code class="descname">get_usage</code><span class="sig-paren">(</span><em>start=None</em>, <em>end=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Account.get_usage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Account.get_usage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Access historical account usage data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.Account.get_user">
+<code class="descname">get_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Account.get_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Account.get_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Access basic account information.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sauceclient.Information">
+<em class="property">class </em><code class="descclassname">sauceclient.</code><code class="descname">Information</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Information"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Information" title="Permalink to this definition">¶</a></dt>
+<dd><p>Information Methods</p>
+<p>Information resources are publicly available data about
+Sauce Lab&#8217;s service.
+- <a class="reference external" href="https://wiki.saucelabs.com/display/DOCS/Information+Methods">https://wiki.saucelabs.com/display/DOCS/Information+Methods</a></p>
+<dl class="method">
+<dt id="sauceclient.Information.get_appium_eol_dates">
+<code class="descname">get_appium_eol_dates</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Information.get_appium_eol_dates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Information.get_appium_eol_dates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of Appium end-of-life dates. Dates are displayed in Unix
+time.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.Information.get_platforms">
+<code class="descname">get_platforms</code><span class="sig-paren">(</span><em>automation_api='all'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Information.get_platforms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Information.get_platforms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of objects describing all the OS and browser platforms
+currently supported on Sauce Labs.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.Information.get_status">
+<code class="descname">get_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Information.get_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Information.get_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the current status of Sauce Labs services.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sauceclient.JavaScriptTests">
+<em class="property">class </em><code class="descclassname">sauceclient.</code><code class="descname">JavaScriptTests</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#JavaScriptTests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.JavaScriptTests" title="Permalink to this definition">¶</a></dt>
+<dd><p>JavaScript Unit Testing Methods</p>
+<ul class="simple">
+<li><a class="reference external" href="https://wiki.saucelabs.com/display/DOCS/JavaScript+Unit+Testing+Methods">https://wiki.saucelabs.com/display/DOCS/JavaScript+Unit+Testing+Methods</a></li>
+</ul>
+<dl class="method">
+<dt id="sauceclient.JavaScriptTests.js_tests">
+<code class="descname">js_tests</code><span class="sig-paren">(</span><em>platforms</em>, <em>url</em>, <em>framework</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#JavaScriptTests.js_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.JavaScriptTests.js_tests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start your JavaScript unit tests on as many browsers as you like
+with a single request.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.JavaScriptTests.js_tests_status">
+<code class="descname">js_tests_status</code><span class="sig-paren">(</span><em>js_tests</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#JavaScriptTests.js_tests_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.JavaScriptTests.js_tests_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the status of your JS unit tests.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sauceclient.Jobs">
+<em class="property">class </em><code class="descclassname">sauceclient.</code><code class="descname">Jobs</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Jobs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Jobs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Job Methods</p>
+<ul class="simple">
+<li><a class="reference external" href="https://wiki.saucelabs.com/display/DOCS/Job+Methods">https://wiki.saucelabs.com/display/DOCS/Job+Methods</a></li>
+</ul>
+<dl class="method">
+<dt id="sauceclient.Jobs.delete_job">
+<code class="descname">delete_job</code><span class="sig-paren">(</span><em>job_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Jobs.delete_job"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Jobs.delete_job" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the job from the system with all the linked assets.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.Jobs.delete_job_assets">
+<code class="descname">delete_job_assets</code><span class="sig-paren">(</span><em>job_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Jobs.delete_job_assets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Jobs.delete_job_assets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete all the assets captured during a test run.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.Jobs.get_auth_token">
+<code class="descname">get_auth_token</code><span class="sig-paren">(</span><em>job_id</em>, <em>date_range=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Jobs.get_auth_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Jobs.get_auth_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an auth token to access protected job resources.</p>
+<p><a class="reference external" href="https://wiki.saucelabs.com/display/DOCS/Building+Links+to+Test+Results">https://wiki.saucelabs.com/display/DOCS/Building+Links+to+Test+Results</a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.Jobs.get_job">
+<code class="descname">get_job</code><span class="sig-paren">(</span><em>job_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Jobs.get_job"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Jobs.get_job" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retreive a single job.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.Jobs.get_job_asset_url">
+<code class="descname">get_job_asset_url</code><span class="sig-paren">(</span><em>job_id</em>, <em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Jobs.get_job_asset_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Jobs.get_job_asset_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get details about the static assets collected for a specific job.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.Jobs.get_job_assets">
+<code class="descname">get_job_assets</code><span class="sig-paren">(</span><em>job_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Jobs.get_job_assets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Jobs.get_job_assets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get details about the static assets collected for a specific job.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.Jobs.get_jobs">
+<code class="descname">get_jobs</code><span class="sig-paren">(</span><em>full=None</em>, <em>limit=None</em>, <em>skip=None</em>, <em>start=None</em>, <em>end=None</em>, <em>output_format=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Jobs.get_jobs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Jobs.get_jobs" title="Permalink to this definition">¶</a></dt>
+<dd><p>List jobs belonging to a specific user.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.Jobs.stop_job">
+<code class="descname">stop_job</code><span class="sig-paren">(</span><em>job_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Jobs.stop_job"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Jobs.stop_job" title="Permalink to this definition">¶</a></dt>
+<dd><p>Terminates a running job.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.Jobs.update_job">
+<code class="descname">update_job</code><span class="sig-paren">(</span><em>job_id</em>, <em>build=None</em>, <em>custom_data=None</em>, <em>name=None</em>, <em>passed=None</em>, <em>public=None</em>, <em>tags=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Jobs.update_job"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Jobs.update_job" title="Permalink to this definition">¶</a></dt>
+<dd><p>Edit an existing job.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sauceclient.SauceClient">
+<em class="property">class </em><code class="descclassname">sauceclient.</code><code class="descname">SauceClient</code><span class="sig-paren">(</span><em>sauce_username=None</em>, <em>sauce_access_key=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#SauceClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.SauceClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>SauceClient class.</p>
+<dl class="attribute">
+<dt id="sauceclient.SauceClient.apibase">
+<code class="descname">apibase</code><em class="property"> = 'https://saucelabs.com'</em><a class="headerlink" href="#sauceclient.SauceClient.apibase" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.SauceClient.get_auth_string">
+<code class="descname">get_auth_string</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#SauceClient.get_auth_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.SauceClient.get_auth_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create auth string from credentials.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.SauceClient.make_auth_headers">
+<code class="descname">make_auth_headers</code><span class="sig-paren">(</span><em>content_type</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#SauceClient.make_auth_headers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.SauceClient.make_auth_headers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add authorization header.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.SauceClient.make_headers">
+<code class="descname">make_headers</code><span class="sig-paren">(</span><em>content_type='application/json'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#SauceClient.make_headers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.SauceClient.make_headers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create content-type header.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.SauceClient.request">
+<code class="descname">request</code><span class="sig-paren">(</span><em>method</em>, <em>url</em>, <em>body=None</em>, <em>content_type='application/json'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#SauceClient.request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.SauceClient.request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send http request.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="sauceclient.SauceException">
+<em class="property">exception </em><code class="descclassname">sauceclient.</code><code class="descname">SauceException</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#SauceException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.SauceException" title="Permalink to this definition">¶</a></dt>
+<dd><p>SauceClient exception.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="sauceclient.Storage">
+<em class="property">class </em><code class="descclassname">sauceclient.</code><code class="descname">Storage</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Storage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Storage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Temporary Storage Methods</p>
+<ul class="simple">
+<li><a class="reference external" href="https://wiki.saucelabs.com/display/DOCS/Temporary+Storage+Methods">https://wiki.saucelabs.com/display/DOCS/Temporary+Storage+Methods</a></li>
+</ul>
+<dl class="method">
+<dt id="sauceclient.Storage.get_stored_files">
+<code class="descname">get_stored_files</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Storage.get_stored_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Storage.get_stored_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check which files are in your temporary storage.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.Storage.upload_file">
+<code class="descname">upload_file</code><span class="sig-paren">(</span><em>filepath</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Storage.upload_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Storage.upload_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uploads a file to the temporary sauce storage.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sauceclient.Tunnels">
+<em class="property">class </em><code class="descclassname">sauceclient.</code><code class="descname">Tunnels</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Tunnels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Tunnels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tunnel Methods</p>
+<ul class="simple">
+<li><a class="reference external" href="https://wiki.saucelabs.com/display/DOCS/Tunnel+Methods">https://wiki.saucelabs.com/display/DOCS/Tunnel+Methods</a></li>
+</ul>
+<dl class="method">
+<dt id="sauceclient.Tunnels.delete_tunnel">
+<code class="descname">delete_tunnel</code><span class="sig-paren">(</span><em>tunnel_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Tunnels.delete_tunnel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Tunnels.delete_tunnel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get information for a tunnel given its ID.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.Tunnels.get_tunnel">
+<code class="descname">get_tunnel</code><span class="sig-paren">(</span><em>tunnel_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Tunnels.get_tunnel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Tunnels.get_tunnel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get information for a tunnel given its ID.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sauceclient.Tunnels.get_tunnels">
+<code class="descname">get_tunnels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sauceclient.html#Tunnels.get_tunnels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sauceclient.Tunnels.get_tunnels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves all running tunnels for a specific user.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tests.html" class="btn btn-neutral float-right" title="tests Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="sauceclient" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2017, Corey Goldberg.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0dev',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

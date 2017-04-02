@@ -1,0 +1,355 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Selenium WebDriver in Python (local and remote) &mdash; sauceclient library - Python documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="sauceclient library - Python documentation" href="index.html"/>
+        <link rel="prev" title="tests Module" href="tests.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> sauceclient
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0dev
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="sauceclient.html">sauceclient Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">tests Module</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Selenium WebDriver in Python (local and remote)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#selenium-local-webdriver-example">Selenium - Local WebDriver example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#selenium-remote-webdriver-example">Selenium - Remote WebDriver example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-a-test-from-local-webdriver">Running a Test From Local WebDriver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-a-test-from-sauce-labs">Running a Test From Sauce Labs</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">sauceclient</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Selenium WebDriver in Python (local and remote)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="selenium-webdriver-in-python-local-and-remote">
+<h1>Selenium WebDriver in Python (local and remote)<a class="headerlink" href="#selenium-webdriver-in-python-local-and-remote" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>Python 2.7 or 3.x</li>
+<li>Selenium 2.x bindings (<code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">selenium</span></code>)</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="selenium-local-webdriver-example">
+<h2>Selenium - Local WebDriver example<a class="headerlink" href="#selenium-local-webdriver-example" title="Permalink to this headline">¶</a></h2>
+<p>Let&#8217;s start with a very simple Selenium WebDriver example...</p>
+<p>consider the following Python code:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">from</span> <span class="nn">selenium</span> <span class="k">import</span> <span class="n">webdriver</span>
+
+<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">()</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://saucelabs.com/test/guinea-pig&#39;</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This code uses <code class="docutils literal"><span class="pre">webdriver.Firefox()</span></code>, to invoke the local FireFox driver.</p>
+</div>
+<div class="section" id="selenium-remote-webdriver-example">
+<h2>Selenium - Remote WebDriver example<a class="headerlink" href="#selenium-remote-webdriver-example" title="Permalink to this headline">¶</a></h2>
+<p>Instead of running locally via <code class="docutils literal"><span class="pre">webdriver.Firefox()</span></code>, we can use
+<code class="docutils literal"><span class="pre">webdriver.Remote()</span></code>, and have it execute <em>from</em> a remote machine
+running Selenium Server. In this case, the Sauce Labs cloud:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">from</span> <span class="nn">selenium</span> <span class="k">import</span> <span class="n">webdriver</span>
+
+<span class="n">SAUCE_USERNAME</span> <span class="o">=</span> <span class="s1">&#39;your-username-string&#39;</span>
+<span class="n">SAUCE_ACCESS_KEY</span> <span class="o">=</span> <span class="s1">&#39;your-access-key-string&#39;</span>
+
+<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Remote</span><span class="p">(</span>
+    <span class="n">desired_capabilities</span><span class="o">=</span><span class="n">webdriver</span><span class="o">.</span><span class="n">DesiredCapabilities</span><span class="o">.</span><span class="n">FIREFOX</span><span class="p">,</span>
+    <span class="n">command_executor</span><span class="o">=</span><span class="s1">&#39;http://</span><span class="si">%s</span><span class="s1">:</span><span class="si">%s</span><span class="s1">@ondemand.saucelabs.com:80/wd/hub&#39;</span> <span class="o">%</span>
+    <span class="p">(</span><span class="n">SAUCE_USERNAME</span><span class="p">,</span> <span class="n">SAUCE_ACCESS_KEY</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://saucelabs.com/test/guinea-pig&#39;</span><span class="p">)</span>
+<span class="nb">id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">session_id</span>
+<span class="nb">print</span> <span class="s1">&#39;Link to your job: https://saucelabs.com/jobs/</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">id</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-a-test-from-local-webdriver">
+<h2>Running a Test From Local WebDriver<a class="headerlink" href="#running-a-test-from-local-webdriver" title="Permalink to this headline">¶</a></h2>
+<p>The following Python script executes a simple test against a remote web server.
+It drives the local FireFox browser:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">from</span> <span class="nn">selenium</span> <span class="k">import</span> <span class="n">webdriver</span>
+
+
+<span class="k">class</span> <span class="nc">Selenium2OnLocal</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">test_from_local</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://saucelabs.com/test/guinea-pig&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="s1">&#39;I am a page title - Sauce Labs&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s1">&#39;This page is a Selenium sandbox&#39;</span><span class="p">,</span> <span class="n">body</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-a-test-from-sauce-labs">
+<h2>Running a Test From Sauce Labs<a class="headerlink" href="#running-a-test-from-sauce-labs" title="Permalink to this headline">¶</a></h2>
+<p>Similar Python script as above, but now executing from Sauce Labs cloud. Notice
+the use of <code class="docutils literal"><span class="pre">webdriver.Remote()</span></code> as a replacement driver:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">from</span> <span class="nn">selenium</span> <span class="k">import</span> <span class="n">webdriver</span>
+
+
+<span class="n">SAUCE_USERNAME</span> <span class="o">=</span> <span class="s1">&#39;your-username-string&#39;</span>
+<span class="n">SAUCE_ACCESS_KEY</span> <span class="o">=</span> <span class="s1">&#39;your-access-key-string&#39;</span>
+
+
+<span class="k">class</span> <span class="nc">Selenium2OnSauce</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Remote</span><span class="p">(</span>
+            <span class="n">desired_capabilities</span><span class="o">=</span><span class="n">webdriver</span><span class="o">.</span><span class="n">DesiredCapabilities</span><span class="o">.</span><span class="n">FIREFOX</span><span class="p">,</span>
+            <span class="n">command_executor</span><span class="o">=</span><span class="s1">&#39;http://</span><span class="si">%s</span><span class="s1">:</span><span class="si">%s</span><span class="s1">@ondemand.saucelabs.com:80/wd/hub&#39;</span> <span class="o">%</span>
+            <span class="p">(</span><span class="n">SAUCE_USERNAME</span><span class="p">,</span> <span class="n">SAUCE_ACCESS_KEY</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_from_sauce</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://saucelabs.com/test/guinea-pig&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="s1">&#39;I am a page title - Sauce Labs&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s1">&#39;This page is a Selenium sandbox&#39;</span><span class="p">,</span> <span class="n">body</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">session_id</span>
+        <span class="nb">print</span> <span class="s1">&#39;Link to your job: https://saucelabs.com/jobs/</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="tests.html" class="btn btn-neutral" title="tests Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2017, Corey Goldberg.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0dev',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

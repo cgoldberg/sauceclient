@@ -2,10 +2,11 @@ Generating the Docs
 ===================
 
 * the following packages are required to build the documentation:
-  - sphinx
-  - sphinx_rtd_theme
+   - sphinx
+   - sphinx_rtd_theme
 
-*to generate the docs:
-  - from sauceclient directory, run:
-      $ sphinx-build -b html doc html_docs
-    (docs will be generated in: `html_docs` directory)
+*  generate the docs:
+    - from sauceclient main directory, run:
+      $ sphinx-build -b html doc ./docs
+
+   html documentation gets generated in the `sauceclient/docs` directory.

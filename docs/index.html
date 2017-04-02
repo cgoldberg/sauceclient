@@ -1,0 +1,354 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sauceclient &mdash; sauceclient library - Python documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="sauceclient library - Python documentation" href="#"/>
+        <link rel="next" title="sauceclient Module" href="sauceclient.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> sauceclient
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0dev
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="sauceclient.html">sauceclient Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">tests Module</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="selenium_on_sauce.html">Selenium WebDriver in Python (local and remote)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">sauceclient</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>sauceclient</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sauceclient">
+<h1>sauceclient<a class="headerlink" href="#sauceclient" title="Permalink to this headline">¶</a></h1>
+<p><strong>Python client library for Sauce Labs API.</strong></p>
+<a class="reference external image-reference" href="https://travis-ci.org/cgoldberg/sauceclient"><img alt="https://travis-ci.org/cgoldberg/sauceclient.svg?branch=master" src="https://travis-ci.org/cgoldberg/sauceclient.svg?branch=master" /></a>
+<div class="section" id="info">
+<h2>Info<a class="headerlink" href="#info" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>Author: <a class="reference external" href="https://github.com/cgoldberg">Corey Goldberg</a> - 2013-2017</li>
+<li>Docs: <a class="reference external" href="https://cgoldberg.github.io/sauceclient/">https://cgoldberg.github.io/sauceclient/</a></li>
+<li>Releases: <a class="reference external" href="https://pypi.python.org/pypi/sauceclient">https://pypi.python.org/pypi/sauceclient</a></li>
+<li>Dev: <a class="reference external" href="https://github.com/cgoldberg/sauceclient">https://github.com/cgoldberg/sauceclient</a></li>
+<li>License: Apache v2.0</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="about-sauceclient">
+<h2>About sauceclient<a class="headerlink" href="#about-sauceclient" title="Permalink to this headline">¶</a></h2>
+<p><em>sauceclient</em> is a Python client library for Sauce Labs API.  You can manage
+a Selenium test environment and retrieve test assets from Sauce.</p>
+<p>The API gives remote access to:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Test Jobs &amp; Assets (Results, Logs, Videos, Screenshots)</li>
+<li>Account</li>
+<li>Platform Information</li>
+<li>JavaScript Unit Tests</li>
+<li>Temporary Storage</li>
+<li>Tunnels</li>
+</ul>
+</div></blockquote>
+<p>Note: <em>sauceclient</em> is not used for running tests on Sauce Labs&#8217; services.
+Test execution is handled by <a class="reference external" href="selenium_on_sauce.html">Selenium WebDriver</a>.</p>
+</div>
+<div class="section" id="about-sauce-labs">
+<h2>About Sauce Labs<a class="headerlink" href="#about-sauce-labs" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://saucelabs.com">Sauce Labs</a> is a service for running remote Selenium
+WebDriver tests. It ghas VM&#8217;s with 800+ browser/OS combinations, allowing
+comprehensive cross-browser cross-platform test coverage.</p>
+</div>
+<div class="section" id="install">
+<h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul>
+<li><p class="first">with <cite>pip</cite>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">sauceclient</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="example-usage">
+<h2>Example Usage<a class="headerlink" href="#example-usage" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul>
+<li><p class="first">public access:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sauceclient</span>
+
+<span class="n">sc</span> <span class="o">=</span> <span class="n">sauceclient</span><span class="o">.</span><span class="n">SauceClient</span><span class="p">()</span>
+<span class="n">status</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get_status</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">with authorization:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sauceclient</span>
+
+<span class="n">sc</span> <span class="o">=</span> <span class="n">sauceclient</span><span class="o">.</span><span class="n">SauceClient</span><span class="p">(</span>
+    <span class="s1">&#39;sauce-username&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sauce-access-key&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">jobs</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">jobs</span><span class="o">.</span><span class="n">get_jobs</span><span class="p">(</span><span class="n">full</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="related-links">
+<h2>Related Links<a class="headerlink" href="#related-links" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="https://saucelabs.com">Sauce Labs</a></li>
+<li><a class="reference external" href="http://saucelabs.com/docs/rest">Sauce Labs REST API documentation</a></li>
+<li><a class="reference external" href="http://pypi.python.org/pypi/selenium">Python bindings for Selenium WebDriver</a></li>
+</ul>
+</div>
+<div class="section" id="compatibility-note">
+<h2>Compatibility Note<a class="headerlink" href="#compatibility-note" title="Permalink to this headline">¶</a></h2>
+<p>Due to changes in the SauceLabs REST API, some of sauceclient&#8217;s
+classes and methods have been changed or renamed since the pre-1.0 releases.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="python-module-reference">
+<h2>Python Module Reference<a class="headerlink" href="#python-module-reference" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sauceclient.html">sauceclient Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">tests Module</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="running-selenium-webdriver">
+<h2>Running Selenium WebDriver<a class="headerlink" href="#running-selenium-webdriver" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="selenium_on_sauce.html">Selenium WebDriver in Python (local and remote)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="selenium_on_sauce.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="selenium_on_sauce.html#selenium-local-webdriver-example">Selenium - Local WebDriver example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="selenium_on_sauce.html#selenium-remote-webdriver-example">Selenium - Remote WebDriver example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="selenium_on_sauce.html#running-a-test-from-local-webdriver">Running a Test From Local WebDriver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="selenium_on_sauce.html#running-a-test-from-sauce-labs">Running a Test From Sauce Labs</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>Related Links<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://saucelabs.com">Sauce Labs</a></li>
+<li><a class="reference external" href="http://saucelabs.com/docs/rest">Sauce Labs REST API documentation</a></li>
+<li><a class="reference external" href="http://pypi.python.org/pypi/selenium">Python bindings for Selenium WebDriver</a></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sauceclient.html" class="btn btn-neutral float-right" title="sauceclient Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2017, Corey Goldberg.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0dev',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

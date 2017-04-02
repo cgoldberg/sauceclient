@@ -73,9 +73,9 @@ Example Usage
 Related Links
 =============
 
-* `Sauce Labs <https://saucelabs.com>`_
-* `Sauce Labs REST API documentation <http://saucelabs.com/docs/rest>`_
-* `Python bindings for Selenium WebDriver <http://pypi.python.org/pypi/selenium>`_
+ * `Sauce Labs <https://saucelabs.com>`_
+ * `Sauce Labs REST API documentation <http://saucelabs.com/docs/rest>`_
+ * `Python bindings for Selenium WebDriver <http://pypi.python.org/pypi/selenium>`_
 
 Compatibility Note
 ==================
