@@ -32,7 +32,7 @@ except ImportError:
     from urllib import urlencode
 
 
-__version__ = '1.0dev'
+__version__ = '1.0'
 
 
 class SauceException(Exception):
