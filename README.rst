@@ -11,7 +11,7 @@ Info
 =====
 
  * Author: `Corey Goldberg <https://github.com/cgoldberg>`_ - 2013-2017
- * Docs: https://cgoldberg.github.io/sauceclient/
+ * Docs: https://readthedocs.org/projects/sauceclient
  * Releases: https://pypi.python.org/pypi/sauceclient
  * Dev: https://github.com/cgoldberg/sauceclient
  * License: Apache v2.0
