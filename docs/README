@@ -7,6 +7,6 @@ Generating the Docs
 
 *  generate the docs:
     - from sauceclient main directory, run:
-      $ sphinx-build -b html doc ./docs
+      $ sphinx-build -b html docs html-docs
 
    html documentation gets generated in the `sauceclient/docs` directory.
