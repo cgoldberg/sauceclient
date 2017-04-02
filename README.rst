@@ -1,4 +1,4 @@
-===========
+ed===========
 sauceclient
 ===========
 
@@ -10,7 +10,7 @@ sauceclient
 Info
 =====
 
- * Author: `Corey Goldberg <https://github.com/cgoldberg>`_ - 2013-2017
+ * Author: `Corey Goldberg <https://github.com/cgoldberg>`_ (2013-2017)
  * Docs: https://readthedocs.org/projects/sauceclient
  * Releases: https://pypi.python.org/pypi/sauceclient
  * Dev: https://github.com/cgoldberg/sauceclient
