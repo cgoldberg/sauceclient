@@ -1,21 +1,16 @@
 #!/usr/bin/env python
 """Sauce Labs REST API client
 
-#   Copyright (c) 2013-2017 Corey Goldberg
-#
-#   This file is part of: sauceclient
-#   https://github.com/cgoldberg/sauceclient
-#
-#   Licensed under the Apache License, Version 2.0 (the "License");
-#   you may not use this file except in compliance with the License.
-#   You may obtain a copy of the License at
-#
-#       http://www.apache.org/licenses/LICENSE-2.0
-#
-#   ----------------
-#
-#   Sauce Labs REST API documentation:
-#     http://saucelabs.com/docs/rest
+   Copyright (c) 2013-2017 Corey Goldberg
+
+   This file is part of: sauceclient
+   https://github.com/cgoldberg/sauceclient
+
+   License: Apache Version 2.0
+   http://www.apache.org/licenses/LICENSE-2.0
+
+   Sauce Labs REST API documentation:
+   http://saucelabs.com/docs/rest
 """
 
 import base64
@@ -32,7 +27,7 @@ except ImportError:
     from urllib import urlencode
 
 
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 
 
 class SauceException(Exception):
