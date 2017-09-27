@@ -77,7 +77,6 @@ class SauceClient(object):
         """Send http request."""
         headers = self.make_auth_headers(content_type)
         connection = http_client.HTTPSConnection('saucelabs.com')
-        print url
         connection.request(method, url, body, headers=headers)
         response = connection.getresponse()
         data = response.read()
