@@ -97,6 +97,65 @@ class TestSauce(unittest.TestCase):
         resp = self.sc.account.get_usage(start='1976-10-23', end='1976-10-23')
         self.assertIsInstance(resp, dict)
 
+    """ANALYTICS"""
+
+    def test_analytics_get_test_trends(self, mocked):
+        mocked.return_value.status = 200
+        mocked.return_value.reason = 'OK'
+        mocked.return_value.read.return_value = b'{}'
+
+        resp = self.sc.analytics.get_test_trends(start='1976-10-12T12:00:00Z', end='1976-10-13T12:00:00Z', interval='6h')
+        self.assertIsInstance(resp,dict)
+
+        resp = self.sc.analytics.get_test_trends(time_range='6d', interval='6h')
+        self.assertIsInstance(resp,dict)
+
+    def test_analytics_get_error_trends(self, mocked):
+        mocked.return_value.status = 200
+        mocked.return_value.reason = 'OK'
+        mocked.return_value.read.return_value = b'{}'
+
+        resp = self.sc.analytics.get_error_trends(start='1976-10-12T12:00:00Z', end='1976-10-13T12:00:00Z')
+        self.assertIsInstance(resp,dict)
+
+        resp = self.sc.analytics.get_error_trends(time_range='6d')
+        self.assertIsInstance(resp,dict)
+
+
+    def test_analytics_get_build_trends(self, mocked):
+        mocked.return_value.status = 200
+        mocked.return_value.reason = 'OK'
+        mocked.return_value.read.return_value = b'{}'
+
+        resp = self.sc.analytics.get_build_trends(start='1976-10-12T12:00:00Z', end='1976-10-13T12:00:00Z')
+        self.assertIsInstance(resp,dict)
+
+        resp = self.sc.analytics.get_build_trends(time_range='6d')
+        self.assertIsInstance(resp,dict)
+
+    def test_analytics_get_tests(self, mocked):
+        mocked.return_value.status = 200
+        mocked.return_value.reason = 'OK'
+        mocked.return_value.read.return_value = b'{}'
+
+        resp = self.sc.analytics.get_tests(start='1976-10-12T12:00:00Z', end='1976-10-13T12:00:00Z', size=50)
+        self.assertIsInstance(resp,dict)
+
+        resp = self.sc.analytics.get_tests(time_range='6d', size=50)
+        self.assertIsInstance(resp,dict)
+
+
+    def test_analytics_get_concurrency(self, mocked):
+        mocked.return_value.status = 200
+        mocked.return_value.reason = 'OK'
+        mocked.return_value.read.return_value = b'{}'
+
+        resp = self.sc.analytics.get_concurrency(start='1976-10-12T12:00:00Z', end='1976-10-13T12:00:00Z', interval='6h')
+        self.assertIsInstance(resp,dict)
+
+        resp = self.sc.analytics.get_concurrency(time_range='6d', interval='6h')
+        self.assertIsInstance(resp,dict)
+
     """INFORMATION"""
     def test_information_get_status(self, mocked):
         mocked.return_value.status = 200
