@@ -340,12 +340,17 @@ class Storage(object):
         """Initialize class."""
         self.client = client
 
-    def upload_file(self, filepath):
+    def upload_file(self, filepath, overwrite=None):
         """Uploads a file to the temporary sauce storage."""
         method = 'POST'
         filename = os.path.split(filepath)[1]
         endpoint = '/rest/v1/storage/{}/{}'.format(
             self.client.sauce_username, filename)
+        data = {}
+        if overwrite:
+            data['overwrite'] = overwrite
+        if data:
+            endpoint = '?'.join([endpoint, urlencode(data)])
         with open(filepath, 'rb') as filehandle:
             body = filehandle.read()
         return self.client.request(method, endpoint, body,
