@@ -54,6 +54,7 @@ class SauceClient(object):
         self.jobs = Jobs(self)
         self.storage = Storage(self)
         self.tunnels = Tunnels(self)
+        self.analytics = Analytics(self)
 
     def get_auth_string(self):
         """Create auth string from credentials."""
@@ -163,6 +164,171 @@ class Account(object):
         if data:
             endpoint = '?'.join([endpoint, urlencode(data)])
         return self.client.request(method, endpoint)
+
+class Analytics(object):
+    """Analytics Methods
+
+    These methods provide user account information and management.
+    - https://wiki.saucelabs.com/display/DOCS/Analytics+Methods
+    """
+    def __init__(self, client):
+        self.client = client
+
+    def get_test_trends(self, start=None, end=None, interval=None, time_range=None, scope=None,
+                        owner=None, status=None, pretty=False, os=None,
+                        browser=None):
+        method = 'GET'
+        endpoint = '/rest/v1/analytics/trends/tests'
+        data = {}
+
+        if time_range:
+            data['time_range'] = time_range
+        if start:
+            data['start'] = start
+        if end:
+            data['end'] = end
+        if interval:
+            data['interval'] = interval
+        if scope:
+            data['scope'] = scope
+        if owner:
+            data['owner'] = owner
+        if status:
+            data['status'] = status
+        if pretty:
+            data['pretty'] = ''
+        if os:
+            data['os'] = os
+        if browser:
+            data['browser'] = browser
+
+        endpoint = '?'.join([endpoint, urlencode(data)])
+        return self.client.request(method, endpoint)
+    def get_error_trends(self, start=None, end=None, time_range=None, scope=None,
+                        owner=None, status=None, pretty=False, os=None,
+                        browser=None):
+        method = 'GET'
+        endpoint = '/rest/v1/analytics/trends/errors'
+        data = {}
+
+        if time_range:
+            data['time_range'] = time_range
+        if start:
+            data['start'] = start
+        if end:
+            data['end'] = end
+        if scope:
+            data['scope'] = scope
+        if owner:
+            data['owner'] = owner
+        if status:
+            data['status'] = status
+        if pretty:
+            data['pretty'] = ''
+        if os:
+            data['os'] = os
+        if browser:
+            data['browser'] = browser
+
+        endpoint = '?'.join([endpoint, urlencode(data)])
+        return self.client.request(method, endpoint)
+
+    def get_build_trends(self, start=None, end=None, time_range=None, scope=None,
+                        owner=None, status=None, pretty=False, os=None,
+                        browser=None):
+        method = 'GET'
+        endpoint = '/rest/v1/analytics/trends/builds_tests'
+        data = {}
+
+        if time_range:
+            data['time_range'] = time_range
+        if start:
+            data['start'] = start
+        if end:
+            data['end'] = end
+        if scope:
+            data['scope'] = scope
+        if owner:
+            data['owner'] = owner
+        if status:
+            data['status'] = status
+        if pretty:
+            data['pretty'] = ''
+        if os:
+            data['os'] = os
+        if browser:
+            data['browser'] = browser
+
+        endpoint = '?'.join([endpoint, urlencode(data)])
+        return self.client.request(method, endpoint)
+
+    def get_tests(self, start=None, end=None, size=None, time_range=None, scope=None,
+                  owner=None, status=None, pretty=False, error=None, build=None,
+                  skip=None,missing_build=False):
+        
+        method = 'GET'
+        endpoint = '/rest/v1/analytics/tests'
+        data = {}
+
+        if time_range:
+            data['time_range'] = time_range
+        if start:
+            data['start'] = start
+        if end:
+            data['end'] = end
+        if size:
+            data['size'] = size
+        if scope:
+            data['scope'] = scope
+        if owner:
+            data['owner'] = owner
+        if status:
+            data['status'] = status
+        if pretty:
+            data['pretty'] = ''
+        if error:
+            data['error'] = error
+        if build:
+            data['build'] = build
+        #from is a reserved keyword, using skip instead
+        if skip:
+            data['from'] = skip
+        if missing_build:
+            data['missing_build'] = ''
+
+
+        endpoint = '?'.join([endpoint, urlencode(data)])
+        return self.client.request(method, endpoint)
+
+    def get_concurrency(self, start=None, end=None, interval=None, time_range=None, scope=None,
+                        owner=None, status=None, pretty=False):
+
+        method = 'GET'
+        endpoint = '/rest/v1/analytics/insights/concurrency'
+        data={}
+
+
+        if time_range:
+            data['time_range'] = time_range
+        if start:
+            data['start'] = start
+        if end:
+            data['end'] = end
+        if interval:
+            data['interval'] = interval
+        if scope:
+            data['scope'] = scope
+        if owner:
+            data['owner'] = owner
+        if status:
+            data['status'] = status
+        if pretty:
+            data['pretty'] = ''
+
+
+        endpoint = '?'.join([endpoint, urlencode(data)])
+        return self.client.request(method, endpoint)
+
 
 
 class Information(object):
