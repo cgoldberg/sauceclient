@@ -42,11 +42,11 @@ class SauceException(Exception):
 class SauceClient(object):
     """SauceClient class."""
 
-    def __init__(self, sauce_username=None, sauce_access_key=None, apibase='saucelabs.com'):
+    def __init__(self, sauce_username=None, sauce_access_key=None, apibase=None):
         """Initialize class."""
         self.sauce_username = sauce_username
         self.sauce_access_key = sauce_access_key
-        self.apibase = apibase
+        self.apibase = apibase or 'saucelabs.com'
         self.headers = self.make_headers()
         self.account = Account(self)
         self.information = Information(self)
