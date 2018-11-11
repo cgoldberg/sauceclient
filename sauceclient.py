@@ -41,12 +41,12 @@ class SauceException(Exception):
 
 class SauceClient(object):
     """SauceClient class."""
-    apibase = 'https://saucelabs.com'
 
-    def __init__(self, sauce_username=None, sauce_access_key=None):
+    def __init__(self, sauce_username=None, sauce_access_key=None, apibase=None):
         """Initialize class."""
         self.sauce_username = sauce_username
         self.sauce_access_key = sauce_access_key
+        self.apibase = apibase or 'saucelabs.com'
         self.headers = self.make_headers()
         self.account = Account(self)
         self.information = Information(self)
@@ -76,7 +76,7 @@ class SauceClient(object):
     def request(self, method, url, body=None, content_type='application/json'):
         """Send http request."""
         headers = self.make_auth_headers(content_type)
-        connection = http_client.HTTPSConnection('saucelabs.com')
+        connection = http_client.HTTPSConnection(self.apibase)
         connection.request(method, url, body, headers=headers)
         response = connection.getresponse()
         data = response.read()
@@ -265,7 +265,7 @@ class Analytics(object):
     def get_tests(self, start=None, end=None, size=None, time_range=None, scope=None,
                   owner=None, status=None, pretty=False, error=None, build=None,
                   skip=None,missing_build=False):
-        
+
         method = 'GET'
         endpoint = '/rest/v1/analytics/tests'
         data = {}
