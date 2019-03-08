@@ -216,7 +216,7 @@ class TestSauce(unittest.TestCase):
 
         resp = self.sc.jobs.get_jobs(full=True, limit=1, skip=1,
                                      start=214891200, end=214975439,
-                                     output_format='json')
+                                     job_name='test_job', output_format='json')
         self.assertIsInstance(resp, list)
 
     def test_jobs_get_job(self, mocked):
