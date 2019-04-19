@@ -38,6 +38,8 @@ class SauceException(Exception):
         super(SauceException, self).__init__(*args)
         self.response = kwargs.get('response')
 
+class PathException(Exception):
+    """SauceClient exception."""
 
 class SauceClient(object):
     """SauceClient class."""
@@ -86,7 +88,7 @@ class SauceClient(object):
                 response.status, response.reason), response=response)
         return json.loads(data.decode('utf-8'))
 
-    def request_content(self, url, filename, content_type=None):
+    def request_content(self, url, filename, dirpath=None,content_type=None):
         """Send http request for asset content"""
         headers = self.make_auth_headers(content_type)
         connection = http_client.HTTPSConnection(self.apibase)
@@ -94,7 +96,16 @@ class SauceClient(object):
         connection.request('GET', full_url, headers=headers)
         response = connection.getresponse()
         data = response.read()
-        open(filename, 'wb').write(data)
+
+        if dirpath:
+            if os.path.exists(dirpath):
+                full_path = os.path.join(dirpath, filename)
+                open(full_path, 'wb').write(data)
+            else:
+                raise PathException("Path does not exist")
+        else:
+            open(filename, 'wb').write(data)
+
         connection.close()
         if response.status not in [200, 201]:
             raise SauceException('{}: {}.\nSauce Status NOT OK'.format(
@@ -492,12 +503,12 @@ class Jobs(object):
         return 'https://{}/rest/v1/{}/jobs/{}/assets/{}'.format(self.client.apibase,
             self.client.sauce_username, job_id, filename)
 
-    def get_job_asset_content(self, job_id, filename):
+    def get_job_asset_content(self, job_id, filename, dirpath=None):
         """Get content collected for a specific asset on a specific job."""
         endpoint = '/rest/v1/{}/jobs/{}/assets/'.format(
             self.client.sauce_username, job_id)
 
-        return self.client.request_content(endpoint,filename)
+        return self.client.request_content(endpoint,filename,dirpath)
 
     def delete_job_assets(self, job_id):
         """Delete all the assets captured during a test run."""
