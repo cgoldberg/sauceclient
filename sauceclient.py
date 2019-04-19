@@ -86,6 +86,21 @@ class SauceClient(object):
                 response.status, response.reason), response=response)
         return json.loads(data.decode('utf-8'))
 
+    def request_content(self, url, filename, content_type=None):
+        """Send http request for asset content"""
+        headers = self.make_auth_headers(content_type)
+        connection = http_client.HTTPSConnection(self.apibase)
+        full_url = url + filename
+        connection.request('GET', full_url, headers=headers)
+        response = connection.getresponse()
+        data = response.read()
+        open(filename, 'wb').write(data)
+        connection.close()
+        if response.status not in [200, 201]:
+            raise SauceException('{}: {}.\nSauce Status NOT OK'.format(
+                response.status, response.reason), response=response)
+        return True
+
 
 class Account(object):
     """Account Methods
@@ -474,8 +489,15 @@ class Jobs(object):
 
     def get_job_asset_url(self, job_id, filename):
         """Get details about the static assets collected for a specific job."""
-        return 'https://saucelabs.com/rest/v1/{}/jobs/{}/assets/{}'.format(
+        return 'https://{}/rest/v1/{}/jobs/{}/assets/{}'.format(self.client.apibase,
             self.client.sauce_username, job_id, filename)
+
+    def get_job_asset_content(self, job_id, filename):
+        """Get content collected for a specific asset on a specific job."""
+        endpoint = '/rest/v1/{}/jobs/{}/assets/'.format(
+            self.client.sauce_username, job_id)
+
+        return self.client.request_content(endpoint,filename)
 
     def delete_job_assets(self, job_id):
         """Delete all the assets captured during a test run."""

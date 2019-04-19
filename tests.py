@@ -264,6 +264,11 @@ class TestSauce(unittest.TestCase):
     def test_jobs_get_job_asset_url(self, mocked):
         resp = self.sc.jobs.get_job_asset_url('job-id', '0000screenshot.jpg')
         self.assertIsInstance(resp, str)
+        self.assertEqual(resp,"https://saucelabs.com/rest/v1/sauce-username/jobs/job-id/assets/0000screenshot.jpg")
+
+    def test_jobs_get_job_asset_content(self, mocked):
+        resp = self.sc.jobs.get_job_asset_content('job-id',"0000screenshot.jpg")
+        self.assertTrue(resp)
 
     def test_jobs_delete_job_assets(self, mocked):
         mocked.return_value.status = 200
