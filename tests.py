@@ -267,7 +267,7 @@ class TestSauce(unittest.TestCase):
         self.assertEqual(resp,"https://saucelabs.com/rest/v1/sauce-username/jobs/job-id/assets/0000screenshot.jpg")
 
     @patch('sauceclient.os.path')
-    @patch('sauceclient.open')
+    @patch('sauceclient.open', create=True)
     def test_jobs_get_job_asset_content(self, mocked_open, mocked_path, mocked):
 
         mocked.return_value.status = 200
@@ -282,7 +282,7 @@ class TestSauce(unittest.TestCase):
         self.assertTrue(resp)
 
     @patch('sauceclient.os.path')
-    @patch('sauceclient.open')
+    @patch('sauceclient.open', create=True)
     def test_jobs_get_job_asset_content_specific_dir(self, mocked_open, mocked_path, mocked):
         mocked.return_value.status = 200
         mocked.return_value.reason = 'OK'
