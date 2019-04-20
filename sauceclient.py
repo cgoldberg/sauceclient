@@ -88,7 +88,7 @@ class SauceClient(object):
                 response.status, response.reason), response=response)
         return json.loads(data.decode('utf-8'))
 
-    def request_content(self, url, filename, dirpath=None,content_type=None):
+    def request_content(self, url, filename, dirpath=None,content_type=''):
         """Send http request for asset content"""
         headers = self.make_auth_headers(content_type)
         connection = http_client.HTTPSConnection(self.apibase)
