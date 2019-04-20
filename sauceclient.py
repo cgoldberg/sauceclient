@@ -100,11 +100,13 @@ class SauceClient(object):
         if dirpath:
             if os.path.exists(dirpath):
                 full_path = os.path.join(dirpath, filename)
-                open(full_path, 'wb').write(data)
+                with open(full_path, 'wb') as file_handle:
+                    file_handle.write(data)
             else:
                 raise PathException("Path does not exist")
         else:
-            open(filename, 'wb').write(data)
+            with open(filename, 'wb') as file_handle:
+                file_handle.write(data)
 
         connection.close()
         if response.status not in [200, 201]:
