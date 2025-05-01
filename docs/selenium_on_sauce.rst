@@ -5,78 +5,88 @@ Selenium WebDriver in Python (local and remote)
 Requirements
 ============
 
- * Python 2.7 or 3.x
- * Selenium 2.x bindings (``pip install selenium``)
+ * Python 3.9+
+ * Selenium Python bindings (``pip install selenium``)
 
 Selenium - Local WebDriver example
 ==================================
 
 Let's start with a very simple Selenium WebDriver example...
 
-consider the following Python code::
+Consider the following Python code::
 
-    #!/usr/bin/env python
+    #!/usr/bin/env python3
 
     from selenium import webdriver
-    
-    driver = webdriver.Firefox()
-    driver.get('http://saucelabs.com/test/guinea-pig')
+
+
+    driver = webdriver.Chrome()
+    driver.get("https://saucelabs.com/test/guinea-pig")
     driver.quit()
 
-This code uses ``webdriver.Firefox()``, to invoke the local FireFox driver.
+This code uses ``webdriver.Chrome()``, to invoke the local Chrome driver.
 
 Selenium - Remote WebDriver example
 ===================================
 
-Instead of running locally via ``webdriver.Firefox()``, we can use 
+Instead of running locally via ``webdriver.Chrome()``, we can use
 ``webdriver.Remote()``, and have it execute *from* a remote machine 
 running Selenium Server. In this case, the Sauce Labs cloud::
 
-    #!/usr/bin/env python
-    
-    from selenium import webdriver
+    #!/usr/bin/env python3
 
-    SAUCE_USERNAME = 'your-username-string'
-    SAUCE_ACCESS_KEY = 'your-access-key-string'
-    
-    driver = webdriver.Remote(
-        desired_capabilities=webdriver.DesiredCapabilities.FIREFOX,
-        command_executor='http://%s:%s@ondemand.saucelabs.com:80/wd/hub' %
-        (SAUCE_USERNAME, SAUCE_ACCESS_KEY)
-    )
-    driver.get('http://saucelabs.com/test/guinea-pig')
-    id = self.driver.session_id
-    print 'Link to your job: https://saucelabs.com/jobs/%s' % id
+    import os
+
+    from selenium import webdriver
+    from selenium.webdriver.chrome.options import Options
+
+
+    options = Options()
+    options.browser_version = "latest"
+    options.platform_name = "Windows 11"
+    options.add_argument("--headless=new")
+
+    sauce_options = {"username": os.environ["SAUCE_USERNAME"],
+                     "accessKey": os.environ["SAUCE_ACCESS_KEY"],
+                     "name": "my_first_test"}
+
+    options.set_capability("sauce:options", sauce_options)
+    sauce_url = "https://ondemand.us-west-1.saucelabs.com/wd/hub"
+
+    driver = webdriver.Remote(command_executor=sauce_url, options=options)
+    driver.get("https://saucelabs.com/test/guinea-pig")
     driver.quit()
 
 Running a Test From Local WebDriver
 ===================================
 
 The following Python script executes a simple test against a remote web server.
-It drives the local FireFox browser::
+It drives the local Chrome browser::
 
-    #!/usr/bin/env python
+    #!/usr/bin/env python3
 
     import unittest
+
     from selenium import webdriver
+    from selenium.webdriver.common.by import By
 
 
-    class Selenium2OnLocal(unittest.TestCase):
+    class SeleniumLocalTest(unittest.TestCase):
 
         def setUp(self):
-            self.driver = webdriver.Firefox()
+            self.driver = webdriver.Chrome()
             
         def test_from_local(self):
-            self.driver.get('http://saucelabs.com/test/guinea-pig')
-            self.assertEqual('I am a page title - Sauce Labs', self.driver.title)
-            body = self.driver.find_element_by_css_selector('body')
-            self.assertIn('This page is a Selenium sandbox', body.text)
+            self.driver.get("https://saucelabs.com/test/guinea-pig")
+            self.assertEqual("I am a page title - Sauce Labs", self.driver.title)
+            body = self.driver.find_element(By.CSS_SELECTOR("body")
+            self.assertIn("This page is a Selenium sandbox", body.text)
 
         def tearDown(self):
             self.driver.quit()
 
 
-    if __name__ == '__main__':
+    if __name__ == "__main__":
         unittest.main()
 
 Running a Test From Sauce Labs
@@ -85,38 +95,38 @@ Running a Test From Sauce Labs
 Similar Python script as above, but now executing from Sauce Labs cloud. Notice
 the use of ``webdriver.Remote()`` as a replacement driver::
 
-    #!/usr/bin/env python
+    #!/usr/bin/env python3
 
+    import os
     import unittest
+
     from selenium import webdriver
+    from selenium.webdriver.chrome.options import Options
 
 
-    SAUCE_USERNAME = 'your-username-string'
-    SAUCE_ACCESS_KEY = 'your-access-key-string'
-
-
-    class Selenium2OnSauce(unittest.TestCase):
+    class SeleniumSauceTest(unittest.TestCase):
 
         def setUp(self):
-            self.driver = webdriver.Remote(
-                desired_capabilities=webdriver.DesiredCapabilities.FIREFOX,
-                command_executor='http://%s:%s@ondemand.saucelabs.com:80/wd/hub' %
-                (SAUCE_USERNAME, SAUCE_ACCESS_KEY)
-            )
+            options = Options()
+            options.browser_version = "latest"
+            options.platform_name = "Windows 11"
+            options.add_argument("--headless=new")
+            sauce_options = {"username": os.environ["SAUCE_USERNAME"],
+                             "accessKey": os.environ["SAUCE_ACCESS_KEY"],
+                             "name": "my_first_test"}
+            options.set_capability("sauce:options", sauce_options)
+            sauce_url = "https://ondemand.us-west-1.saucelabs.com/wd/hub"
+            self.driver = webdriver.Remote(command_executor=sauce_url, options=options)
 
         def test_from_sauce(self):
-            self.driver.get('http://saucelabs.com/test/guinea-pig')
-            self.assertEqual('I am a page title - Sauce Labs', self.driver.title)
-            body = self.driver.find_element_by_css_selector('body')
-            self.assertIn('This page is a Selenium sandbox', body.text)
+            self.driver.get("https://saucelabs.com/test/guinea-pig")
+            self.assertEqual("I am a page title - Sauce Labs", self.driver.title)
+            body = self.driver.find_element(By.CSS_SELECTOR("body")
+            self.assertIn("This page is a Selenium sandbox", body.text)
 
         def tearDown(self):
-            id = self.driver.session_id
-            print 'Link to your job: https://saucelabs.com/jobs/%s' % id
             self.driver.quit()
 
 
-    if __name__ == '__main__':
+    if __name__ == "__main__":
         unittest.main()
-
-

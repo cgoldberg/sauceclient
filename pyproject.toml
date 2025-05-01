@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sauceclient"
+version = "1.0.1dev0"
+description = "Python client library for Sauce Labs API"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [{name = "Corey Goldberg"}]
+maintainers = [{name = "Corey Goldberg"}]
+readme = "README.md"
+requires-python = ">= 3.9"
+keywords = ["API", "Cloud", "Testing", "Sauce Labs"]
+classifiers = [
+    'Intended Audience :: Developers',
+    'Operating System :: OS Independent',
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    'Topic :: Software Development :: Libraries :: Python Modules',
+    'Topic :: Software Development :: Testing',
+]
+
+[project.urls]
+homepage = "https://github.com/cgoldberg/sauceclient"
+source = "https://github.com/cgoldberg/sauceclient"
+download = "https://pypi.org/project/sauceclient"
+
+[tool.setuptools]
+py-modules = ["sauceclient"]
+
+[tool.black]
+line-length = 88
+target-version = ["py39"]
+
+[tool.isort]
+profile = "black"
+py_version = 39
+
+[tool.autoflake]
+in-place = true
+max-line-length = ["88"]
+min-python-version = ["3.9"]
+remove-all-unused-imports = true
+remove-duplicate-keys = true
+remove-unused-variables = true
