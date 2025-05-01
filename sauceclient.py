@@ -401,7 +401,7 @@ class Jobs(object):
         self.client = client
 
     def get_jobs(self, full=None, limit=None, skip=None, start=None, end=None,
-                 output_format=None):
+                 job_name=None, output_format=None):
         """List jobs belonging to a specific user."""
         method = 'GET'
         endpoint = '/rest/v1/{}/jobs'.format(self.client.sauce_username)
@@ -412,6 +412,8 @@ class Jobs(object):
             data['limit'] = limit
         if skip is not None:
             data['skip'] = skip
+        if job_name is not None:
+            data['name'] = job_name
         if start is not None:
             data['from'] = start
         if end is not None:
