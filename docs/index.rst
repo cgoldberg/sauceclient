@@ -4,13 +4,10 @@ sauceclient
 
 **Python client library for Sauce Labs API.**
 
-.. image:: https://travis-ci.org/cgoldberg/sauceclient.svg?branch=master
-    :target: https://travis-ci.org/cgoldberg/sauceclient
-
 Info
 =====
 
- * Author: `Corey Goldberg <https://github.com/cgoldberg>`_ (2013-2017)
+ * Author: `Corey Goldberg <https://github.com/cgoldberg>`_ (2013-2025)
  * Docs: https://sauceclient.readthedocs.io
  * Releases: https://pypi.python.org/pypi/sauceclient
  * Dev: https://github.com/cgoldberg/sauceclient
@@ -20,7 +17,7 @@ Info
 About sauceclient
 =================
 
-*sauceclient* is a Python client library for Sauce Labs API.  You can manage
+*sauceclient* is a Python client library for Sauce Labs API. You can manage
 a Selenium test environment and retrieve test assets from Sauce.
 
 The API gives remote access to:
@@ -33,19 +30,18 @@ The API gives remote access to:
  * Tunnels
 
 Note: *sauceclient* is not used for running tests on Sauce Labs' services.
-Test execution is handled by `Selenium WebDriver`_.
-
-.. _Selenium WebDriver: selenium_on_sauce.html
+Test execution is handled by your testing tool or library (Selenium,
+Playwright, Cypress, Appium, etc).
 
 About Sauce Labs
 ================
 
-`Sauce Labs <https://saucelabs.com>`_ is a service for running remote Selenium
-WebDriver tests. It ghas VM's with 800+ browser/OS combinations, allowing
-comprehensive cross-browser cross-platform test coverage.
+`Sauce Labs <https://saucelabs.com>`_ is a cloud-based service for running
+remote browser-based tests. It has VM's with 800+ browser/OS combinations,
+allowing comprehensive cross-browser cross-platform test coverage.
 
-Install
-=======
+Installation
+============
 
  * with `pip`::
 
@@ -75,14 +71,8 @@ Related Links
 =============
 
  * `Sauce Labs <https://saucelabs.com>`_
- * `Sauce Labs REST API documentation <http://saucelabs.com/docs/rest>`_
- * `Python bindings for Selenium WebDriver <http://pypi.python.org/pypi/selenium>`_
-
-Compatibility Note
-==================
-
-Due to changes in the SauceLabs REST API, some of sauceclient's
-classes and methods have been changed or renamed since the pre-1.0 releases.
+ * `Sauce Labs REST API documentation <https://docs.saucelabs.com/dev/api>`_
+ * `Python bindings for Selenium WebDriver <https://pypi.org/project/selenium>`_
 
 ----
 

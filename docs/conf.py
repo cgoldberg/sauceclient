@@ -11,8 +11,9 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import sys
 import os
+import sys
+
 import sphinx_rtd_theme
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -20,7 +21,7 @@ import sphinx_rtd_theme
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 # sys.path.insert(0, os.path.abspath('.'))
 
-sys.path.insert(1, os.path.abspath('../'))
+sys.path.insert(1, os.path.abspath("../"))
 import sauceclient
 
 # -- General configuration
@@ -30,23 +31,23 @@ import sauceclient
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.viewcode']
+extensions = ["sphinx.ext.autodoc", "sphinx.ext.viewcode"]
 
 # Add any paths that contain templates here, relative to this directory.
 # templates_path = ['_templates']
 
 # The suffix of source filenames.
-source_suffix = '.rst'
+source_suffix = ".rst"
 
 # The encoding of source files.
 # source_encoding = 'utf-8-sig'
 
 # The master toctree document.
-master_doc = 'index'
+master_doc = "index"
 
 # General information about the project.
-project = u'sauceclient'
-copyright = u'2013-2017, Corey Goldberg'
+project = "sauceclient"
+copyright = "2013-2025, Corey Goldberg"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -69,7 +70,7 @@ release = sauceclient.__version__
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['_build']
+exclude_patterns = ["_build"]
 
 # The reST default role to use for all documents.
 # default_role = None
@@ -86,7 +87,7 @@ exclude_patterns = ['_build']
 # show_authors = False
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
+pygments_style = "sphinx"
 
 # A list of ignored prefixes for module index sorting.
 # modindex_common_prefix = []
@@ -96,7 +97,7 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'sphinx_rtd_theme'
+html_theme = "sphinx_rtd_theme"
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # Theme options are theme-specific and customize the look and feel of a theme
@@ -112,7 +113,7 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 # html_title = ''
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
-html_short_title = 'sauceclient docs'
+html_short_title = "sauceclient docs"
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
@@ -155,4 +156,4 @@ html_show_sphinx = False
 html_show_copyright = True
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'doc'
+htmlhelp_basename = "doc"
