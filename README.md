@@ -1,6 +1,6 @@
 # sauceclient
 
-#### Python client library for Sauce Labs API.**
+## Python client library for Sauce Labs API
 
 - Copyright (c) 2013-2025 [Corey Goldberg][github-home]
 - Development: [GitHub][github-repo]

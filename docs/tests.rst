@@ -1,6 +1,6 @@
-tests Module
-============
+test_sauceclient Module
+=======================
 
-.. automodule:: tests
+.. automodule:: test_sauceclient
     :members:
     :undoc-members:

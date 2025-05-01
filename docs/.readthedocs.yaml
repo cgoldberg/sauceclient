@@ -1,0 +1,19 @@
+# .readthedocs.yaml
+# configuration file for publishing sauceclient documentation on "Read the Docs"
+#
+# configuration file reference: https://docs.readthedocs.io/en/stable/config-file/v2.html
+# job configuration: https://app.readthedocs.org/projects/sauceclient
+# published docs: https://sauceclient.readthedocs.io
+
+version: 2
+
+build:
+  os: ubuntu-24.04
+  tools:
+    python: "3.11"
+  commands:
+    - pip install -r docs/requirements_doc.txt
+    - sphinx-build -b html docs $READTHEDOCS_OUTPUT/html
+
+sphinx:
+  configuration: docs/conf.py
