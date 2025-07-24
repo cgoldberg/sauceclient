@@ -37,7 +37,7 @@ py-modules = ["sauceclient"]
 
 [tool.black]
 line-length = 88
-target-version = ["py39"]
+target-version = ["py39", "py310", "py311", "py312", "py313"]
 
 [tool.isort]
 profile = "black"
