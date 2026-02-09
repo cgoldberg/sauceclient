@@ -2,7 +2,7 @@
 
 ## Python client library for Sauce Labs API
 
-- Copyright (c) 2013-2025 [Corey Goldberg][github-home]
+- Copyright (c) 2013-2026 [Corey Goldberg][github-home]
 - Development: [GitHub][github-repo]
 - Releases: [PyPI][pypi]
 - Docs: [Read the Docs][readthedocs]

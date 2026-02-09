@@ -8,7 +8,6 @@ import sauceclient
 
 @patch("sauceclient.http_client.HTTPSConnection.getresponse")
 class TestSauce(unittest.TestCase):
-
     def setUp(self):
         self.sc = sauceclient.SauceClient("sauce-username", "sauce-access-key")
 

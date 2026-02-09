@@ -7,7 +7,7 @@ sauceclient
 Info
 =====
 
- * Author: `Corey Goldberg <https://github.com/cgoldberg>`_ (2013-2025)
+ * Author: `Corey Goldberg <https://github.com/cgoldberg>`_ (2013-2026)
  * Docs: https://sauceclient.readthedocs.io
  * Releases: https://pypi.python.org/pypi/sauceclient
  * Dev: https://github.com/cgoldberg/sauceclient
