@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sauceclient"
-version = "1.0.2"
+version = "1.0.3dev0"
 description = "Python client library for Sauce Labs API"
 license = "Apache-2.0"
 license-files = ["LICENSE"]
